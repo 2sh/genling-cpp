@@ -34,7 +34,6 @@ int main(int argc, char* argv[])
 	{
 		if(i>0) std::cout << " ";
 		std::cout << syllable.generate();
-		syllable.generate();
 	}
 	std::cout << std::endl << "done" << std::endl;
 	return 0;
