@@ -1,5 +1,5 @@
-#ifndef GENLING_GENLING_HPP_INCLUDED
-#define GENLING_GENLING_HPP_INCLUDED
+#ifndef GENLING_LIB_HPP_INCLUDED
+#define GENLING_LIB_HPP_INCLUDED
 
 #include "phoneme.hpp"
 #include "segment.hpp"
@@ -8,4 +8,4 @@
 #include "filter.hpp"
 #include "replace.hpp"
 
-#endif // GENLING_GENLING_HPP_INCLUDED
+#endif // GENLING_LIB_HPP_INCLUDED
