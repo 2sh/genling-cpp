@@ -39,6 +39,8 @@ namespace genling
 	
 	class RegexFilter: public Filter
 	{
+		using Filter::Filter;
+		
 		private:
 			std::regex rgx;
 		
