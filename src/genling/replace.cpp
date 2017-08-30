@@ -3,17 +3,16 @@
 using namespace genling;
 
 Replace::Replace(std::string pattern, std::string repl, float probability) :
-	repl(repl), probability(probability)
+	repl(repl), probability(probability),
+	rng((std::random_device())())
 {
 	set_pattern(pattern);
-	std::random_device rd;
-	generator = std::default_random_engine(rd());
 	distribution = std::uniform_real_distribution<float>(0.0,1.0);
 }
 
 std::string Replace::apply(std::string string)
 {
-	if(distribution(generator) > probability)
+	if(distribution(rng) > probability)
 		return string;
 	
 	return replace(string);

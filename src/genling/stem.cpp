@@ -9,16 +9,15 @@ Stem::Stem(std::vector<Syllable> syllables, std::vector<int> balance,
 	std::vector<Filter> filters,
 	std::string prefix, std::string suffix,  std::string infix) :
 		syllables(syllables), filters(filters),
-		prefix(prefix), suffix(suffix), infix(infix)
+		prefix(prefix), suffix(suffix), infix(infix),
+		rng((std::random_device())())
 {
 	set_balance(balance);
-	std::random_device rd;
-	generator = std::default_random_engine(rd());
 }
 
 std::string Stem::generate_unfiltered()
 {
-	int syllable_amount = balance_distribution(generator) + 1;
+	int syllable_amount = balance_distribution(rng) + 1;
 	std::string output = prefix;
 	
 	for(int i=0; i<syllable_amount; i++)
@@ -41,7 +40,7 @@ std::string Stem::generate_unfiltered()
 			std::discrete_distribution<int> distribution(
 				weights.begin(), weights.end());
 			
-			pt_syllable = &possible_syllables[distribution(generator)];
+			pt_syllable = &possible_syllables[distribution(rng)];
 		}
 		else if(possible_syllables.size() == 1)
 		{

@@ -14,7 +14,7 @@ namespace genling
 			std::string repl;
 			float probability;
 			
-			std::default_random_engine generator;
+			std::mt19937 rng;
 			std::uniform_real_distribution<float> distribution;
 		
 		protected:

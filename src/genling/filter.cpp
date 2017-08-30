@@ -3,17 +3,16 @@
 using namespace genling;
 
 Filter::Filter(std::string pattern, float probability, bool permit) :
-	probability(probability), permit(permit)
+	probability(probability), permit(permit),
+	rng((std::random_device())())
 {
 	set_pattern(pattern);
-	std::random_device rd;
-	generator = std::default_random_engine(rd());
 	distribution = std::uniform_real_distribution<float>(0.0,1.0);
 }
 
 bool Filter::is_permitted(std::string string)
 {
-	if(distribution(generator) > probability)
+	if(distribution(rng) > probability)
 		return !permit;
 	if(match(string))
 		return permit;

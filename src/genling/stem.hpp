@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <random>
 
 #include "syllable.hpp"
 #include "filter.hpp"
@@ -19,7 +20,7 @@ namespace genling
 			std::string suffix;
 			std::string infix;
 			
-			std::default_random_engine generator;
+			std::mt19937 rng;
 			std::discrete_distribution<int> balance_distribution;
 			
 			std::string generate_unfiltered();

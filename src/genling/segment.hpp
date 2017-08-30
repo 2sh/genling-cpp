@@ -16,7 +16,7 @@ namespace genling
 			std::string prefix;
 			std::string suffix;
 			
-			std::default_random_engine generator;
+			std::mt19937 rng;
 			std::discrete_distribution<int> weight_distribution;
 		public:
 			Segment(std::vector<Phoneme> phonemes,

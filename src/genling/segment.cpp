@@ -3,18 +3,18 @@
 using namespace genling;
 
 
+
 Segment::Segment(std::vector<Phoneme> phonemes,
 	std::string prefix, std::string suffix) :
-		prefix(prefix), suffix(suffix)
+		prefix(prefix), suffix(suffix),
+		rng((std::random_device())())
 {
 	set_phonemes(phonemes);
-	std::random_device rd;
-	generator = std::default_random_engine(rd());
 }
 
 std::string Segment::generate()
 {
-	return prefix + phonemes[weight_distribution(generator)].get_grapheme() + suffix;
+	return prefix + phonemes[weight_distribution(rng)].get_grapheme() + suffix;
 }
 
 // Getters
