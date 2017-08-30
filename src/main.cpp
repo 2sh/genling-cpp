@@ -4,7 +4,13 @@
 
 #include "genling/lib.hpp"
 
-genling::Stem conlang()
+struct GenLang
+{
+	genling::Stem stem;
+	std::vector<genling::Replace> script_rules;
+};
+
+GenLang conlang()
 {
 	std::vector<genling::Syllable> syllables;
 	std::vector<genling::Segment> segments;
@@ -217,7 +223,27 @@ genling::Stem conlang()
 	
 	std::vector<int> syllable_balance = {5, 2};
 	
-	return {syllables, syllable_balance, filters, "<", ">", "#"};
+	std::vector<genling::Replace> script_rules =
+	{
+		{"_", ""},
+
+		{"A", "ı"},
+		{"oe", "ø"},
+
+		{"T", "þ"},
+		{"D", "ð"},
+
+		genling::RegexReplace("x#(.)", "\\1\\1"),
+
+		{"<", ""},
+		{"#", ""},
+		{">", ""}
+	};
+	
+	return {
+		{syllables, syllable_balance, filters, "<", ">", "#"},
+		script_rules
+	};
 }
 
 int main(int argc, char* argv[])
@@ -226,14 +252,20 @@ int main(int argc, char* argv[])
 	if(argc > 1)
 		word_count = strtoul(argv[1], nullptr, 10);
 	
+	GenLang lang = conlang();
 	
-	genling::Stem stem = conlang();
-	
+	std::string output;
 	std::cout << "start" << std::endl;
 	for(int i=0; i<word_count; i++)
 	{
 		if(i>0) std::cout << " ";
-		std::cout << stem.generate();
+		
+		output = lang.stem.generate();
+		for(genling::Replace rule : lang.script_rules)
+		{
+			output = rule.apply(output);
+		}
+		std::cout << output;
 	}
 	std::cout << std::endl << "done" << std::endl;
 	return 0;
