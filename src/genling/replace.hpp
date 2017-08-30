@@ -38,6 +38,8 @@ namespace genling
 	
 	class RegexReplace: public Replace
 	{
+		using Replace::Replace;
+		
 		private:
 			std::regex rgx;
 		

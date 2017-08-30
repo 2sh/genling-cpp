@@ -57,10 +57,10 @@ void Replace::set_probability(float probability)
 
 std::string Replace::replace(std::string string)
 {
-	std::string::size_type position;
+	std::string::size_type position = 0;
 	while((position = string.find(pattern, position)) != std::string::npos)
 	{
-		string.replace(position, pattern.size(), get_repl());
+		string = string.replace(position, pattern.size(), get_repl());
 		position += get_repl().size();
 	}
 	return string;
