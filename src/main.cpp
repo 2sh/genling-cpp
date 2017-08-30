@@ -195,7 +195,7 @@ genling::Stem conlang()
 	};
 	segments.push_back({phonemes});
 	
-	syllables.push_back({segments, 1});
+	syllables.push_back({segments, 2});
 	
 	std::vector<genling::Filter> filters =
 	{
@@ -217,7 +217,7 @@ genling::Stem conlang()
 	
 	std::vector<int> syllable_balance = {5, 2};
 	
-	return {syllables, syllable_balance, filters, "<", "#", ">"};
+	return {syllables, syllable_balance, filters, "<", ">", "#"};
 }
 
 int main(int argc, char* argv[])

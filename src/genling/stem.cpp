@@ -1,4 +1,5 @@
 #include <stdexcept>
+#include <string>
 
 #include "stem.hpp"
 
@@ -19,31 +20,36 @@ std::string Stem::generate_unfiltered()
 {
 	int syllable_amount = balance_distribution(generator) + 1;
 	std::string output = prefix;
-	Syllable * pt_syllable;
 	
 	for(int i=0; i<syllable_amount; i++)
 	{
-		std::vector<Syllable> syllables;
+		std::vector<Syllable> possible_syllables;
 		std::vector<int> weights;
+		Syllable * pt_syllable;
+		
 		for(Syllable syllable : syllables)
 		{
 			if(!syllable.is_permitted_position(i, syllable_amount))
 				continue;
-			syllables.push_back(syllable);
+			possible_syllables.push_back(syllable);
 			weights.push_back(syllable.get_weight());
 		}
 		
-		if(i>0) output += " ";
-		if(syllables.size() > 1)
+		if(i>0) output += infix;
+		if(possible_syllables.size() > 1)
 		{
 			std::discrete_distribution<int> distribution(
 				weights.begin(), weights.end());
 			
-			pt_syllable = &syllables[distribution(generator)];
+			pt_syllable = &possible_syllables[distribution(generator)];
+		}
+		else if(possible_syllables.size() == 1)
+		{
+			pt_syllable = &possible_syllables[0];
 		}
 		else
 		{
-			pt_syllable = &syllables[0];
+			throw std::invalid_argument("No possible syllable for position " + std::to_string(i+1));
 		}
 		output += pt_syllable->generate();
 	}
