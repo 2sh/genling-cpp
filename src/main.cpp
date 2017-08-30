@@ -7,7 +7,7 @@
 struct GenLang
 {
 	genling::Stem stem;
-	std::vector<genling::Replace> script_rules;
+	std::vector<std::shared_ptr<genling::Replace>> script_rules;
 };
 
 GenLang conlang()
@@ -203,41 +203,41 @@ GenLang conlang()
 	
 	syllables.push_back({segments, 2});
 	
-	std::vector<genling::Filter> filters =
+	std::vector<std::shared_ptr<genling::Filter>> filters =
 	{
-		{"x>"},
-		{"h>"},
-		{"c>"},
+		std::make_shared<genling::Filter>("x>"),
+		std::make_shared<genling::Filter>("h>"),
+		std::make_shared<genling::Filter>("c>"),
 
-		{"n#m"},
+		std::make_shared<genling::Filter>("n#m"),
 
-		{"cs"},
+		std::make_shared<genling::Filter>("cs"),
 
-		{"l#l"},
-		{"r#r"},
-		{"l#r"},
-		{"x#r"},
+		std::make_shared<genling::Filter>("l#l"),
+		std::make_shared<genling::Filter>("r#r"),
+		std::make_shared<genling::Filter>("l#r"),
+		std::make_shared<genling::Filter>("x#r"),
 
-		genling::RegexFilter("<._") // Stem starting with an initial
+		std::make_shared<genling::RegexFilter>("<._") // Stem starting with an initial
 	};
 	
 	std::vector<int> syllable_balance = {5, 2};
 	
-	std::vector<genling::Replace> script_rules =
+	std::vector<std::shared_ptr<genling::Replace>> script_rules =
 	{
-		{"_", ""},
+		std::make_shared<genling::Replace>("_", ""),
 
-		{"A", "ı"},
-		{"oe", "ø"},
+		std::make_shared<genling::Replace>("A", "ı"),
+		std::make_shared<genling::Replace>("oe", "ø"),
 
-		{"T", "þ"},
-		{"D", "ð"},
+		std::make_shared<genling::Replace>("T", "þ"),
+		std::make_shared<genling::Replace>("D", "ð"),
 
-		genling::RegexReplace("x#(.)", "\\1\\1"),
+		std::make_shared<genling::RegexReplace>("x#(.)", "$1$1"),
 
-		{"<", ""},
-		{"#", ""},
-		{">", ""}
+		std::make_shared<genling::Replace>("<", ""),
+		std::make_shared<genling::Replace>("#", ""),
+		std::make_shared<genling::Replace>(">", "")
 	};
 	
 	return {
@@ -255,18 +255,18 @@ int main(int argc, char* argv[])
 	GenLang lang = conlang();
 	
 	std::string output;
-	std::cout << "start" << std::endl;
 	for(int i=0; i<word_count; i++)
 	{
-		if(i>0) std::cout << " ";
+		if(i>0) std::cout << std::endl;
 		
 		output = lang.stem.generate();
-		for(genling::Replace rule : lang.script_rules)
+		std::cout << output << " ";
+		for(auto rule : lang.script_rules)
 		{
-			output = rule.apply(output);
+			output = rule->apply(output);
 		}
 		std::cout << output;
 	}
-	std::cout << std::endl << "done" << std::endl;
+	std::cout << std::endl;
 	return 0;
 }

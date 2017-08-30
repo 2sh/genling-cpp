@@ -6,7 +6,7 @@
 using namespace genling;
 
 Stem::Stem(std::vector<Syllable> syllables, std::vector<int> balance,
-	std::vector<Filter> filters,
+	std::vector<std::shared_ptr<genling::Filter>> filters,
 	std::string prefix, std::string suffix,  std::string infix) :
 		syllables(syllables), filters(filters),
 		prefix(prefix), suffix(suffix), infix(infix),
@@ -62,9 +62,9 @@ std::string Stem::generate()
 	for(int i=0; i<1000; i++)
 	{
 		stem = generate_unfiltered();
-		for(Filter filter : filters)
+		for(auto filter : filters)
 		{
-			is_rejected = filter.is_rejected(stem);
+			is_rejected = filter->is_rejected(stem);
 			if(is_rejected) break;
 		}
 		if(!is_rejected)
@@ -85,7 +85,7 @@ std::vector<int> Stem::get_balance()
 	return balance;
 }
 
-std::vector<Filter> Stem::get_filters()
+std::vector<std::shared_ptr<genling::Filter>> Stem::get_filters()
 {
 	return filters;
 }
@@ -119,7 +119,7 @@ void Stem::set_balance(std::vector<int> balance)
 		balance.begin(), balance.end());
 }
 
-void Stem::set_filters(std::vector<Filter> filters)
+void Stem::set_filters(std::vector<std::shared_ptr<genling::Filter>> filters)
 {
 	this->filters = filters;
 }

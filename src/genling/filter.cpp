@@ -3,10 +3,9 @@
 using namespace genling;
 
 Filter::Filter(std::string pattern, float probability, bool permit) :
-	probability(probability), permit(permit),
+	pattern(pattern), probability(probability), permit(permit),
 	rng((std::random_device())())
 {
-	set_pattern(pattern);
 	distribution = std::uniform_real_distribution<float>(0.0,1.0);
 }
 
@@ -41,24 +40,6 @@ bool Filter::get_permit()
 	return permit;
 }
 
-// Setters
-
-void Filter::set_pattern(std::string pattern)
-{
-	this->pattern = pattern;
-	prepare();
-}
-
-void Filter::set_probability(float probability)
-{
-	this->probability = probability;
-}
-
-void Filter::set_permit(bool permit)
-{
-	this->permit = permit;
-}
-
 // (Simple) Filter
 
 bool Filter::match(std::string string)
@@ -66,17 +47,13 @@ bool Filter::match(std::string string)
 	return string.find(get_pattern()) != std::string::npos;
 }
 
-void Filter::prepare(){}
-
 // Regex Filter
+
+RegexFilter::RegexFilter(std::string pattern, float probability, bool permit) :
+	Filter(pattern, probability, permit), rgx(std::regex(pattern)) {}
 
 bool RegexFilter::match(std::string string)
 {
 	std::smatch m;
 	return std::regex_search(string, m, rgx);
-}
-
-void RegexFilter::prepare()
-{
-	rgx = std::regex(get_pattern());
 }

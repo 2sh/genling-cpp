@@ -15,7 +15,7 @@ namespace genling
 		private:
 			std::vector<Syllable> syllables;
 			std::vector<int> balance;
-			std::vector<Filter> filters;
+			std::vector<std::shared_ptr<genling::Filter>> filters;
 			std::string prefix;
 			std::string suffix;
 			std::string infix;
@@ -27,7 +27,7 @@ namespace genling
 			
 		public:
 			Stem(std::vector<Syllable> syllables, std::vector<int> balance,
-				std::vector<Filter> filters,
+				std::vector<std::shared_ptr<genling::Filter>> filters,
 				std::string prefix = "", std::string suffix = "",
 				std::string infix = "");
 			
@@ -35,14 +35,14 @@ namespace genling
 			
 			std::vector<Syllable> get_syllables();
 			std::vector<int> get_balance();
-			std::vector<Filter> get_filters();
+			std::vector<std::shared_ptr<genling::Filter>> get_filters();
 			std::string get_prefix();
 			std::string get_suffix();
 			std::string get_infix();
 			
 			void set_syllables(std::vector<Syllable> syllables);
 			void set_balance(std::vector<int> balance);
-			void set_filters(std::vector<Filter> filters);
+			void set_filters(std::vector<std::shared_ptr<genling::Filter>> filters);
 			void set_prefix(std::string prefix);
 			void set_suffix(std::string suffix);
 			void set_infix(std::string infix);
