@@ -7,7 +7,7 @@ using namespace genling;
 
 Stem::Stem(std::vector<Syllable> syllables, std::vector<int> balance,
 	std::vector<std::shared_ptr<genling::Filter>> filters,
-	std::string prefix, std::string suffix,  std::string infix) :
+	std::wstring prefix, std::wstring suffix,  std::wstring infix) :
 		syllables(syllables), filters(filters),
 		prefix(prefix), suffix(suffix), infix(infix),
 		rng((std::random_device())())
@@ -15,10 +15,10 @@ Stem::Stem(std::vector<Syllable> syllables, std::vector<int> balance,
 	set_balance(balance);
 }
 
-std::string Stem::generate_unfiltered()
+std::wstring Stem::generate_unfiltered()
 {
 	int syllable_amount = balance_distribution(rng) + 1;
-	std::string output = prefix;
+	std::wstring output = prefix;
 	
 	for(int i=0; i<syllable_amount; i++)
 	{
@@ -55,9 +55,9 @@ std::string Stem::generate_unfiltered()
 	return output + suffix;
 }
 
-std::string Stem::generate()
+std::wstring Stem::generate()
 {
-	std::string stem;
+	std::wstring stem;
 	bool is_rejected = false;
 	for(int i=0; i<1000; i++)
 	{
@@ -90,17 +90,17 @@ std::vector<std::shared_ptr<genling::Filter>> Stem::get_filters()
 	return filters;
 }
 
-std::string Stem::get_prefix()
+std::wstring Stem::get_prefix()
 {
 	return prefix;
 }
 
-std::string Stem::get_suffix()
+std::wstring Stem::get_suffix()
 {
 	return suffix;
 }
 
-std::string Stem::get_infix()
+std::wstring Stem::get_infix()
 {
 	return infix;
 }
@@ -124,17 +124,17 @@ void Stem::set_filters(std::vector<std::shared_ptr<genling::Filter>> filters)
 	this->filters = filters;
 }
 
-void Stem::set_prefix(std::string prefix)
+void Stem::set_prefix(std::wstring prefix)
 {
 	this->prefix = prefix;
 }
 
-void Stem::set_suffix(std::string suffix)
+void Stem::set_suffix(std::wstring suffix)
 {
 	this->suffix = suffix;
 }
 
-void Stem::set_infix(std::string infix)
+void Stem::set_infix(std::wstring infix)
 {
 	this->infix = infix;
 }

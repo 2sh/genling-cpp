@@ -13,24 +13,24 @@ namespace genling
 	{
 		private:
 			std::vector<Phoneme> phonemes;
-			std::string prefix;
-			std::string suffix;
+			std::wstring prefix;
+			std::wstring suffix;
 			
 			std::mt19937 rng;
 			std::discrete_distribution<int> weight_distribution;
 		public:
 			Segment(std::vector<Phoneme> phonemes,
-				std::string prefix = "", std::string suffix = "");
+				std::wstring prefix = L"", std::wstring suffix = L"");
 			
-			std::string generate();
+			std::wstring generate();
 			
 			std::vector<Phoneme> get_phonemes();
-			std::string get_prefix();
-			std::string get_suffix();
+			std::wstring get_prefix();
+			std::wstring get_suffix();
 			
 			void set_phonemes(std::vector<Phoneme> phonemes);
-			void set_prefix(std::string prefix);
-			void set_suffix(std::string suffix);
+			void set_prefix(std::wstring prefix);
+			void set_suffix(std::wstring suffix);
 	};
 }
 

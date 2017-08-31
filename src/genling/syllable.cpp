@@ -5,7 +5,7 @@ using namespace genling;
 
 Syllable::Syllable(std::vector<Segment> segments,
 	int position, int weight,
-	std::string prefix, std::string suffix, std::string infix) :
+	std::wstring prefix, std::wstring suffix, std::wstring infix) :
 		segments(segments), position(position), weight(weight),
 		prefix(prefix), suffix(suffix), infix(infix) {}
 
@@ -15,9 +15,9 @@ bool Syllable::is_permitted_position(int i, int length)
 		(position > 0 ? position : length+position+1) == (i+1));
 }
 
-std::string Syllable::generate()
+std::wstring Syllable::generate()
 {
-	std::string output = prefix;
+	std::wstring output = prefix;
 	for(int i=0; i<segments.size(); i++)
 	{
 		if(i>0) output += infix;
@@ -43,17 +43,17 @@ int Syllable::get_weight()
 	return weight;
 }
 
-std::string Syllable::get_prefix()
+std::wstring Syllable::get_prefix()
 {
 	return prefix;
 }
 
-std::string Syllable::get_suffix()
+std::wstring Syllable::get_suffix()
 {
 	return suffix;
 }
 
-std::string Syllable::get_infix()
+std::wstring Syllable::get_infix()
 {
 	return infix;
 }
@@ -75,17 +75,17 @@ void Syllable::set_weight(int weight)
 	this->weight = weight;
 }
 
-void Syllable::set_prefix(std::string prefix)
+void Syllable::set_prefix(std::wstring prefix)
 {
 	this->prefix = prefix;
 }
 
-void Syllable::set_suffix(std::string suffix)
+void Syllable::set_suffix(std::wstring suffix)
 {
 	this->suffix = suffix;
 }
 
-void Syllable::set_infix(std::string infix)
+void Syllable::set_infix(std::wstring infix)
 {
 	this->infix = infix;
 }

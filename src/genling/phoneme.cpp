@@ -3,12 +3,12 @@
 using namespace genling;
 
 
-Phoneme::Phoneme(std::string grapheme, int weight) :
+Phoneme::Phoneme(std::wstring grapheme, int weight) :
 	grapheme(grapheme), weight(weight) {}
 
 // Getters
 
-std::string Phoneme::get_grapheme()
+std::wstring Phoneme::get_grapheme()
 {
 	return grapheme;
 }
@@ -20,7 +20,7 @@ int Phoneme::get_weight()
 
 // Setters
 
-void Phoneme::set_grapheme(std::string grapheme)
+void Phoneme::set_grapheme(std::wstring grapheme)
 {
 	this->grapheme = grapheme;
 }

@@ -10,7 +10,7 @@ namespace genling
 	class Filter
 	{
 		private:
-			std::string pattern;
+			std::wstring pattern;
 			float probability;
 			bool permit;
 			
@@ -18,16 +18,16 @@ namespace genling
 			std::uniform_real_distribution<float> distribution;
 		
 		protected:
-			virtual bool match(std::string string);
+			virtual bool match(std::wstring string);
 		
 		public:
-			Filter(std::string pattern,
+			Filter(std::wstring pattern,
 				float probability = 1.0, bool permit = false);
 		
-			bool is_permitted(std::string string);
-			bool is_rejected(std::string string);
+			bool is_permitted(std::wstring string);
+			bool is_rejected(std::wstring string);
 			
-			std::string get_pattern();
+			std::wstring get_pattern();
 			float get_probability();
 			bool get_permit();
 	};
@@ -35,13 +35,13 @@ namespace genling
 	class RegexFilter: public Filter
 	{
 		private:
-			std::regex rgx;
+			std::wregex rgx;
 		
 		protected:
-			bool match(std::string string);
+			bool match(std::wstring string);
 		
 		public:
-			RegexFilter(std::string pattern,
+			RegexFilter(std::wstring pattern,
 				float probability = 1.0, bool permit = false);
 	};
 }

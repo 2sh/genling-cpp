@@ -1,6 +1,8 @@
 #include <iostream>
 #include <vector>
 #include <cstdlib>
+#include <codecvt>
+#include <locale>
 
 #include "genling/lib.hpp"
 
@@ -21,118 +23,118 @@ GenLang conlang()
 	// Initial
 	phonemes =
 	{
-		{"_", 10},
-		{"j", 1},
-		{"h", 1},
-		{"c", 1} // C
+		{L"_", 10},
+		{L"j", 1},
+		{L"h", 1},
+		{L"c", 1} // C
 	};
 	segments.push_back({phonemes});
 	
 	// Medial
 	phonemes =
 	{
-		{"_", 20},
+		{L"_", 20},
 
-		{"t", 5},  // t
-		{"tc", 2}, // t_hC
-		{"th", 5}, // t_h
-		{"tj", 2}, // t_h_j
+		{L"t", 5},  // t
+		{L"tc", 2}, // t_hC
+		{L"th", 5}, // t_h
+		{L"tj", 2}, // t_h_j
 
-		{"d", 6},  // d
-		{"dj", 2}, // d_j
+		{L"d", 6},  // d
+		{L"dj", 2}, // d_j
 
-		{"k", 5},
-		{"kc", 2},
-		{"kh", 4},
-		{"kj", 2},
-		{"kT", 4}, // k_hT
+		{L"k", 5},
+		{L"kc", 2},
+		{L"kh", 4},
+		{L"kj", 2},
+		{L"kT", 4}, // k_hT
 
-		{"g", 6},
-		{"gc", 2},
-		{"gj", 3},
+		{L"g", 6},
+		{L"gc", 2},
+		{L"gj", 3},
 
-		{"f", 5},
-		{"fc", 2},
-		{"fh", 3},
-		{"fj", 3},
+		{L"f", 5},
+		{L"fc", 2},
+		{L"fh", 3},
+		{L"fj", 3},
 
-		{"v", 3},
-		{"vj", 1},
+		{L"v", 3},
+		{L"vj", 1},
 
-		{"p", 4},
-		{"pc", 2}, // p_hC
-		{"ph", 2}, // p_h
-		{"pj", 1}, // p\j
-		{"pf", 1}, // p\f
+		{L"p", 4},
+		{L"pc", 2}, // p_hC
+		{L"ph", 2}, // p_h
+		{L"pj", 1}, // p\j
+		{L"pf", 1}, // p\f
 
-		{"b", 6},
-		{"bj", 2},
+		{L"b", 6},
+		{L"bj", 2},
 
-		{"h", 5},
+		{L"h", 5},
 
-		{"s", 5},  // S
-		{"sh", 4}, // S_h
-		{"sj", 1}, // S_h_j
-		{"st", 2},
-		{"sk", 2},
-		{"sf", 2},
-		{"sp", 1},
-		{"sn", 3},
-		{"sm", 4},
+		{L"s", 5},  // S
+		{L"sh", 4}, // S_h
+		{L"sj", 1}, // S_h_j
+		{L"st", 2},
+		{L"sk", 2},
+		{L"sf", 2},
+		{L"sp", 1},
+		{L"sn", 3},
+		{L"sm", 4},
 
-		{"T", 4},  // T
-		{"Tj", 2}, // T_j
+		{L"T", 4},  // T
+		{L"Tj", 2}, // T_j
 
-		{"D", 5},  // D
-		{"Dj", 2}, // D_j
+		{L"D", 5},  // D
+		{L"Dj", 2}, // D_j
 
-		{"l", 7},
-		{"lc", 6}, // K
-		{"lh", 4},
-		{"lj", 4},
+		{L"l", 7},
+		{L"lc", 6}, // K
+		{L"lh", 4},
+		{L"lj", 4},
 
-		{"n", 6},
-		{"nh", 5},
-		{"nj", 3},
+		{L"n", 6},
+		{L"nh", 5},
+		{L"nj", 3},
 
-		{"m", 4},
-		{"my", 2},
+		{L"m", 4},
+		{L"my", 2},
 
-		{"j", 5},  // j
+		{L"j", 5},  // j
 
-		{"r", 2},  // 4
-		{"rh", 3},
-		{"rj", 3}
+		{L"r", 2},  // 4
+		{L"rh", 3},
+		{L"rj", 3}
 	};
 	segments.push_back({phonemes});
 	
 	// Nucleus
 	phonemes =
 	{
-		{"a", 5},  // a
-		{"A", 3},  // @
-		{"i", 4},  // I
-		{"ie", 2}, // i
-		{"u", 4},  // U
-		{"e", 3},  // E
-		{"o", 3},  // O
-		{"ea", 2}, // Ea
-		{"oe", 2}, // 9
-		{"y", 2}  // Y
+		{L"a", 5},  // a
+		{L"A", 3},  // @
+		{L"i", 4},  // I
+		{L"ie", 2}, // i
+		{L"u", 4},  // U
+		{L"e", 3},  // E
+		{L"o", 3},  // O
+		{L"ea", 2}, // Ea
+		{L"oe", 2}, // 9
+		{L"y", 2}  // Y
 	};
 	segments.push_back({phonemes});
 
 	// Coda
 	phonemes =
 	{
-		{"_", 22},
+		{L"_", 22},
 
-		{"n", 6},
-		{"l", 4},
-		{"x", 6}, // repeater
-		{"c", 1},
-		{"h", 2},
-		{"r", 3}
+		{L"n", 6},
+		{L"l", 4},
+		{L"x", 6}, // repeater
+		{L"c", 1},
+		{L"h", 2},
+		{L"r", 3}
 	};
 	segments.push_back({phonemes});
 	
@@ -144,60 +146,60 @@ GenLang conlang()
 	// Initial
 	phonemes =
 	{
-		{"t", 4},
-		{"tj", 2},
+		{L"t", 4},
+		{L"tj", 2},
 
-		{"d", 5},
-		{"dj", 1},
+		{L"d", 5},
+		{L"dj", 1},
 
-		{"k", 4},
-		{"kj", 3},
+		{L"k", 4},
+		{L"kj", 3},
 
-		{"g", 6},
-		{"gj", 1},
+		{L"g", 6},
+		{L"gj", 1},
 
-		{"f", 4},
-		{"fj", 2},
+		{L"f", 4},
+		{L"fj", 2},
 
-		{"p", 4},
-		{"pj", 1},
+		{L"p", 4},
+		{L"pj", 1},
 
-		{"b", 4},
-		{"bj", 1},
+		{L"b", 4},
+		{L"bj", 1},
 
-		{"s", 5},
-		{"sj", 2},
+		{L"s", 5},
+		{L"sj", 2},
 
-		{"T", 4},
-		{"Tj", 1},
+		{L"T", 4},
+		{L"Tj", 1},
 
-		{"D", 3},
-		{"Dj", 1},
+		{L"D", 3},
+		{L"Dj", 1},
 
-		{"l", 7},
-		{"lc", 2},
-		{"lj", 3},
+		{L"l", 7},
+		{L"lc", 2},
+		{L"lj", 3},
 
-		{"n", 8},
-		{"nj", 3},
+		{L"n", 8},
+		{L"nj", 3},
 
-		{"m", 6},
-		{"mj", 3},
+		{L"m", 6},
+		{L"mj", 3},
 
-		{"j", 3},
+		{L"j", 3},
 
-		{"r", 2},
-		{"rj", 1}
+		{L"r", 2},
+		{L"rj", 1}
 	};
 	segments.push_back({phonemes});
 
 	// Nucleus
 	phonemes =
 	{
-		{"a", 5},
-		{"A", 5},
-		{"e", 3},
-		{"o", 3}
+		{L"a", 5},
+		{L"A", 5},
+		{L"e", 3},
+		{L"o", 3}
 	};
 	segments.push_back({phonemes});
 	
@@ -205,43 +207,43 @@ GenLang conlang()
 	
 	std::vector<std::shared_ptr<genling::Filter>> filters =
 	{
-		std::make_shared<genling::Filter>("x>"),
-		std::make_shared<genling::Filter>("h>"),
-		std::make_shared<genling::Filter>("c>"),
+		std::make_shared<genling::Filter>(L"x>"),
+		std::make_shared<genling::Filter>(L"h>"),
+		std::make_shared<genling::Filter>(L"c>"),
 
-		std::make_shared<genling::Filter>("n#m"),
+		std::make_shared<genling::Filter>(L"n#m"),
 
-		std::make_shared<genling::Filter>("cs"),
+		std::make_shared<genling::Filter>(L"cs"),
 
-		std::make_shared<genling::Filter>("l#l"),
-		std::make_shared<genling::Filter>("r#r"),
-		std::make_shared<genling::Filter>("l#r"),
-		std::make_shared<genling::Filter>("x#r"),
+		std::make_shared<genling::Filter>(L"l#l"),
+		std::make_shared<genling::Filter>(L"r#r"),
+		std::make_shared<genling::Filter>(L"l#r"),
+		std::make_shared<genling::Filter>(L"x#r"),
 
-		std::make_shared<genling::RegexFilter>("<._") // Stem starting with an initial
+		std::make_shared<genling::RegexFilter>(L"<._") // Stem starting with an initial
 	};
 	
 	std::vector<int> syllable_balance = {5, 2};
 	
 	std::vector<std::shared_ptr<genling::Replace>> script_rules =
 	{
-		std::make_shared<genling::Replace>("_", ""),
+		std::make_shared<genling::Replace>(L"_", L""),
 
-		std::make_shared<genling::Replace>("A", "ı"),
-		std::make_shared<genling::Replace>("oe", "ø"),
+		std::make_shared<genling::Replace>(L"A", L"ı"),
+		std::make_shared<genling::Replace>(L"oe", L"ø"),
 
-		std::make_shared<genling::Replace>("T", "þ"),
-		std::make_shared<genling::Replace>("D", "ð"),
+		std::make_shared<genling::Replace>(L"T", L"þ"),
+		std::make_shared<genling::Replace>(L"D", L"ð"),
 
-		std::make_shared<genling::RegexReplace>("x#(.)", "$1$1"),
+		std::make_shared<genling::RegexReplace>(L"x#(.)", L"$1$1"),
 
-		std::make_shared<genling::Replace>("<", ""),
-		std::make_shared<genling::Replace>("#", ""),
-		std::make_shared<genling::Replace>(">", "")
+		std::make_shared<genling::Replace>(L"<", L""),
+		std::make_shared<genling::Replace>(L"#", L""),
+		std::make_shared<genling::Replace>(L">", L"")
 	};
 	
 	return {
-		{syllables, syllable_balance, filters, "<", ">", "#"},
+		{syllables, syllable_balance, filters, L"<", L">", L"#"},
 		script_rules
 	};
 }
@@ -254,18 +256,20 @@ int main(int argc, char* argv[])
 	
 	GenLang lang = conlang();
 	
-	std::string output;
+	std::wstring_convert<std::codecvt_utf8<wchar_t>> utf8_conv;
+	
+	std::wstring output;
 	for(int i=0; i<word_count; i++)
 	{
 		if(i>0) std::cout << std::endl;
 		
 		output = lang.stem.generate();
-		std::cout << output << " ";
+		std::cout << utf8_conv.to_bytes(output) << " ";
 		for(auto rule : lang.script_rules)
 		{
 			output = rule->apply(output);
 		}
-		std::cout << output;
+		std::cout << utf8_conv.to_bytes(output);
 	}
 	std::cout << std::endl;
 	return 0;

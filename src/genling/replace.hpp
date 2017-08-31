@@ -10,37 +10,37 @@ namespace genling
 	class Replace
 	{
 		private:
-			std::string pattern;
-			std::string repl;
+			std::wstring pattern;
+			std::wstring repl;
 			float probability;
 			
 			std::mt19937 rng;
 			std::uniform_real_distribution<float> distribution;
 		
 		protected:
-			virtual std::string replace(std::string string);
+			virtual std::wstring replace(std::wstring string);
 			
 		public:
-			Replace(std::string pattern, std::string repl,
+			Replace(std::wstring pattern, std::wstring repl,
 				float probability = 1.0);
 			
-			std::string apply(std::string string);
+			std::wstring apply(std::wstring string);
 			
-			std::string get_pattern();
-			std::string get_repl();
+			std::wstring get_pattern();
+			std::wstring get_repl();
 			float get_probability();
 	};
 	
 	class RegexReplace: public Replace
 	{
 		private:
-			std::regex rgx;
+			std::wregex rgx;
 		
 		protected:
-			std::string replace(std::string string);
+			std::wstring replace(std::wstring string);
 		
 		public:
-			RegexReplace(std::string pattern, std::string repl,
+			RegexReplace(std::wstring pattern, std::wstring repl,
 				float probability = 1.0);
 	};
 }

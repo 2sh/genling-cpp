@@ -2,14 +2,14 @@
 
 using namespace genling;
 
-Filter::Filter(std::string pattern, float probability, bool permit) :
+Filter::Filter(std::wstring pattern, float probability, bool permit) :
 	pattern(pattern), probability(probability), permit(permit),
 	rng((std::random_device())())
 {
 	distribution = std::uniform_real_distribution<float>(0.0,1.0);
 }
 
-bool Filter::is_permitted(std::string string)
+bool Filter::is_permitted(std::wstring string)
 {
 	if(distribution(rng) > probability)
 		return !permit;
@@ -18,14 +18,14 @@ bool Filter::is_permitted(std::string string)
 	return !permit;
 }
 
-bool Filter::is_rejected(std::string string)
+bool Filter::is_rejected(std::wstring string)
 {
 	return !is_permitted(string);
 }
 
 // Getters
 
-std::string Filter::get_pattern()
+std::wstring Filter::get_pattern()
 {
 	return pattern;
 }
@@ -42,18 +42,18 @@ bool Filter::get_permit()
 
 // (Simple) Filter
 
-bool Filter::match(std::string string)
+bool Filter::match(std::wstring string)
 {
-	return string.find(get_pattern()) != std::string::npos;
+	return string.find(get_pattern()) != std::wstring::npos;
 }
 
 // Regex Filter
 
-RegexFilter::RegexFilter(std::string pattern, float probability, bool permit) :
-	Filter(pattern, probability, permit), rgx(std::regex(pattern)) {}
+RegexFilter::RegexFilter(std::wstring pattern, float probability, bool permit) :
+	Filter(pattern, probability, permit), rgx(std::wregex(pattern)) {}
 
-bool RegexFilter::match(std::string string)
+bool RegexFilter::match(std::wstring string)
 {
-	std::smatch m;
+	std::wsmatch m;
 	return std::regex_search(string, m, rgx);
 }
