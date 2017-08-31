@@ -35,7 +35,7 @@ float Filter::get_probability()
 	return probability;
 }
 
-bool Filter::get_permit()
+bool Filter::is_permit()
 {
 	return permit;
 }

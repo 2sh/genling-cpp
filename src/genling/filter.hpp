@@ -29,7 +29,7 @@ namespace genling
 			
 			std::wstring get_pattern();
 			float get_probability();
-			bool get_permit();
+			bool is_permit();
 	};
 	
 	class RegexFilter: public Filter
