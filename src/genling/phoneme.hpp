@@ -8,16 +8,16 @@ namespace genling
 	class Phoneme
 	{
 		private:
-			std::wstring grapheme;
+			std::string grapheme;
 			int weight;
 		
 		public:
-			Phoneme(std::wstring grapheme, int weight = 1);
+			Phoneme(std::string grapheme, int weight = 1);
 			
-			std::wstring get_grapheme();
+			std::string get_grapheme();
 			int get_weight();
 			
-			void set_grapheme(std::wstring grapheme);
+			void set_grapheme(std::string grapheme);
 			void set_weight(int weight);
 	};
 }

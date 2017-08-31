@@ -2,32 +2,33 @@
 #define GENLING_REPLACE_HPP_INCLUDED
 
 #include <string>
-#include <regex>
 #include <random>
+#include <regex>
+#include <codecvt>
 
 namespace genling
 {
 	class Replace
 	{
 		private:
-			std::wstring pattern;
-			std::wstring repl;
+			std::string pattern;
+			std::string repl;
 			float probability;
 			
 			std::mt19937 rng;
 			std::uniform_real_distribution<float> distribution;
 		
 		protected:
-			virtual std::wstring replace(std::wstring string);
+			virtual std::string replace(std::string string);
 			
 		public:
-			Replace(std::wstring pattern, std::wstring repl,
+			Replace(std::string pattern, std::string repl,
 				float probability = 1.0);
 			
-			std::wstring apply(std::wstring string);
+			std::string apply(std::string string);
 			
-			std::wstring get_pattern();
-			std::wstring get_repl();
+			std::string get_pattern();
+			std::string get_repl();
 			float get_probability();
 	};
 	
@@ -35,12 +36,14 @@ namespace genling
 	{
 		private:
 			std::wregex rgx;
+			std::wstring wrepl;
+			std::wstring_convert<std::codecvt_utf8<wchar_t>> wconv;
 		
 		protected:
-			std::wstring replace(std::wstring string);
+			std::string replace(std::string string);
 		
 		public:
-			RegexReplace(std::wstring pattern, std::wstring repl,
+			RegexReplace(std::string pattern, std::string repl,
 				float probability = 1.0);
 	};
 }

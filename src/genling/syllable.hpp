@@ -14,32 +14,32 @@ namespace genling
 			std::vector<Segment> segments;
 			int position;
 			int weight;
-			std::wstring prefix;
-			std::wstring suffix;
-			std::wstring infix;
+			std::string prefix;
+			std::string suffix;
+			std::string infix;
 		
 		public:
 			Syllable(std::vector<Segment> segments,
 				int position = 0, int weight = 1,
-				std::wstring prefix = L"", std::wstring suffix = L"",
-				std::wstring infix = L"");
+				std::string prefix = "", std::string suffix = "",
+				std::string infix = "");
 			
 			bool is_permitted_position(int i, int length);
-			std::wstring generate();
+			std::string generate();
 			
 			std::vector<Segment> get_segments();
 			int get_position();
 			int get_weight();
-			std::wstring get_prefix();
-			std::wstring get_suffix();
-			std::wstring get_infix();
+			std::string get_prefix();
+			std::string get_suffix();
+			std::string get_infix();
 			
 			void set_segments(std::vector<Segment> segments);
 			void set_position(int position);
 			void set_weight(int weight);
-			void set_prefix(std::wstring prefix);
-			void set_suffix(std::wstring suffix);
-			void set_infix(std::wstring infix);
+			void set_prefix(std::string prefix);
+			void set_suffix(std::string suffix);
+			void set_infix(std::string infix);
 	};
 }
 

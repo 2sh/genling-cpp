@@ -2,15 +2,17 @@
 #define GENLING_FILTER_HPP_INCLUDED
 
 #include <string>
-#include <regex>
 #include <random>
+#include <regex>
+#include <codecvt>
+#include <locale>
 
 namespace genling
 {
 	class Filter
 	{
 		private:
-			std::wstring pattern;
+			std::string pattern;
 			float probability;
 			bool permit;
 			
@@ -18,16 +20,16 @@ namespace genling
 			std::uniform_real_distribution<float> distribution;
 		
 		protected:
-			virtual bool match(std::wstring string);
+			virtual bool match(std::string string);
 		
 		public:
-			Filter(std::wstring pattern,
+			Filter(std::string pattern,
 				float probability = 1.0, bool permit = false);
 		
-			bool is_permitted(std::wstring string);
-			bool is_rejected(std::wstring string);
+			bool is_permitted(std::string string);
+			bool is_rejected(std::string string);
 			
-			std::wstring get_pattern();
+			std::string get_pattern();
 			float get_probability();
 			bool is_permit();
 	};
@@ -36,12 +38,13 @@ namespace genling
 	{
 		private:
 			std::wregex rgx;
+			std::wstring_convert<std::codecvt_utf8<wchar_t>> wconv;
 		
 		protected:
-			bool match(std::wstring string);
+			bool match(std::string string);
 		
 		public:
-			RegexFilter(std::wstring pattern,
+			RegexFilter(std::string pattern,
 				float probability = 1.0, bool permit = false);
 	};
 }
