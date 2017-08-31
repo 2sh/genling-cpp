@@ -13,9 +13,6 @@ std::string Replace::apply(std::string string)
 {
 	if(distribution(rng) > probability)
 		return string;
-	
-	
-	
 	return replace(string);
 }
 
