@@ -3,7 +3,7 @@
 
 #include <string>
 #include <random>
-#include <regex>
+#include <boost/regex/icu.hpp>
 #include <codecvt>
 #include <locale>
 
@@ -12,7 +12,7 @@ namespace genling
 	class Filter
 	{
 		private:
-			std::string pattern;
+			std::u32string pattern;
 			float probability;
 			bool permit;
 			
@@ -20,16 +20,16 @@ namespace genling
 			std::uniform_real_distribution<float> distribution;
 		
 		protected:
-			virtual bool match(std::string string);
+			virtual bool match(std::u32string string);
 		
 		public:
-			Filter(std::string pattern,
+			Filter(std::u32string pattern,
 				float probability = 1.0, bool permit = false);
 		
-			bool is_permitted(std::string string);
-			bool is_rejected(std::string string);
+			bool is_permitted(std::u32string string);
+			bool is_rejected(std::u32string string);
 			
-			std::string get_pattern();
+			std::u32string get_pattern();
 			float get_probability();
 			bool is_permit();
 	};
@@ -37,14 +37,14 @@ namespace genling
 	class RegexFilter: public Filter
 	{
 		private:
-			std::wregex rgx;
-			std::wstring_convert<std::codecvt_utf8<wchar_t>> wconv;
-		
+			boost::u32regex rgx;
+			std::wstring_convert<std::codecvt_utf8<char32_t>, char32_t> u32cvt;
+			
 		protected:
-			bool match(std::string string);
+			bool match(std::u32string string);
 		
 		public:
-			RegexFilter(std::string pattern,
+			RegexFilter(std::u32string pattern,
 				float probability = 1.0, bool permit = false);
 	};
 }

@@ -3,7 +3,7 @@
 
 #include <string>
 #include <random>
-#include <regex>
+#include <boost/regex/icu.hpp>
 #include <codecvt>
 #include <locale>
 
@@ -12,39 +12,39 @@ namespace genling
 	class Replace
 	{
 		private:
-			std::string pattern;
-			std::string repl;
+			std::u32string pattern;
+			std::u32string repl;
 			float probability;
 			
 			std::mt19937 rng;
 			std::uniform_real_distribution<float> distribution;
 		
 		protected:
-			virtual std::string replace(std::string string);
+			virtual std::u32string replace(std::u32string string);
 			
 		public:
-			Replace(std::string pattern, std::string repl,
+			Replace(std::u32string pattern, std::u32string repl,
 				float probability = 1.0);
 			
-			std::string apply(std::string string);
+			std::u32string apply(std::u32string string);
 			
-			std::string get_pattern();
-			std::string get_repl();
+			std::u32string get_pattern();
+			std::u32string get_repl();
 			float get_probability();
 	};
 	
 	class RegexReplace: public Replace
 	{
 		private:
-			std::wregex rgx;
-			std::wstring wrepl;
-			std::wstring_convert<std::codecvt_utf8<wchar_t>> wconv;
-		
+			std::wstring_convert<std::codecvt_utf8<char32_t>, char32_t> u32cvt;
+			std::string u8repl;
+			boost::u32regex rgx;
+
 		protected:
-			std::string replace(std::string string);
+			std::u32string replace(std::u32string string);
 		
 		public:
-			RegexReplace(std::string pattern, std::string repl,
+			RegexReplace(std::u32string pattern, std::u32string repl,
 				float probability = 1.0);
 	};
 }

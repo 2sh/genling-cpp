@@ -5,14 +5,14 @@ using namespace genling;
 
 
 Segment::Segment(std::vector<Phoneme> phonemes,
-	std::string prefix, std::string suffix) :
+	std::u32string prefix, std::u32string suffix) :
 		prefix(prefix), suffix(suffix),
 		rng((std::random_device())())
 {
 	set_phonemes(phonemes);
 }
 
-std::string Segment::generate()
+std::u32string Segment::generate()
 {
 	return prefix + phonemes[weight_distribution(rng)].get_grapheme() + suffix;
 }
@@ -24,12 +24,12 @@ std::vector<Phoneme> Segment::get_phonemes()
 	return phonemes;
 }
 
-std::string Segment::get_prefix()
+std::u32string Segment::get_prefix()
 {
 	return prefix;
 }
 
-std::string Segment::get_suffix()
+std::u32string Segment::get_suffix()
 {
 	return suffix;
 }
@@ -49,12 +49,12 @@ void Segment::set_phonemes(std::vector<Phoneme> phonemes)
 		weights.begin(), weights.end());
 }
 
-void Segment::set_prefix(std::string prefix)
+void Segment::set_prefix(std::u32string prefix)
 {
 	this->prefix = prefix;
 }
 
-void Segment::set_suffix(std::string suffix)
+void Segment::set_suffix(std::u32string suffix)
 {
 	this->suffix = suffix;
 }

@@ -1,7 +1,9 @@
 #!/bin/bash
 
 mkdir -p bin/
-g++ -std=c++11 \
+g++ -o bin/genling \
 	src/main.cpp \
 	src/genling/*.cpp \
-	-o bin/genling && chmod +x bin/genling
+	-std=c++11 \
+	-lboost_regex -licuuc \
+	&& chmod +x bin/genling
