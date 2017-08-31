@@ -5,6 +5,7 @@
 #include <random>
 #include <regex>
 #include <codecvt>
+#include <locale>
 
 namespace genling
 {
