@@ -1,17 +1,34 @@
-progname=genling
+TARGET=genling
 
 CXX=g++
-CXXFLAGS=-g -Wall -pedantic \
+CXXFLAGS=-g -Wall -pedantic\
 	-std=c++11
 LDLIBS=-lboost_regex -licuuc
-sources=$(shell find src -name "*.cpp")
-objects=$(patsubst %.cpp,%.o,$(sources))
+SOURCES=src/main.cpp\
+	$(wildcard src/genling/*.cpp)
+OBJECTS=$(SOURCES:src/%.cpp=build/%.o)
 
-all: $(progname)
+RM=rm -rf
+MKDIR=mkdir -p
 
-$(progname): $(objects)
-	mkdir -p bin
-	$(CXX) $(CXXFLAGS) $(LDFLAGS) -o bin/$(progname) $(objects) $(LDLIBS)
+bin/$(TARGET): $(OBJECTS)
+	$(MKDIR) bin
+	$(CXX) $(CXXFLAGS) $(LDFLAGS) -o $@ $(OBJECTS) $(LDLIBS)
+
+$(OBJECTS):
+	$(foreach OBJECT, $@,\
+		$(MKDIR) $(dir $(OBJECT));\
+		$(CXX) $(CXXFLAGS) $(LDFLAGS)\
+			-c -o $(OBJECT) $(OBJECT:build/%.o=src/%.cpp))
+
+depend: .depend
+
+.depend: $(SOURCES)
+	$(RM) ./.depend
+	$(foreach SOURCE, $(SOURCES),\
+		$(CXX) -MM -MT $(SOURCE:src/%.cpp=build/%.o) $(SOURCE) >> .depend;)
 
 clean:
-	rm $(objects)
+	$(RM) ./build ./.depend
+
+include .depend
