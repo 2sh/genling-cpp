@@ -21,6 +21,7 @@ namespace genling
 		public:
 			Segment(std::vector<Phoneme> phonemes,
 				std::u32string prefix = U"", std::u32string suffix = U"");
+			Segment(const Segment& o);
 			
 			std::u32string generate();
 			

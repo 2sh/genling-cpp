@@ -15,6 +15,13 @@ Stem::Stem(std::vector<Syllable> syllables, std::vector<int> balance,
 	set_balance(balance);
 }
 
+Stem::Stem(const Stem& o) :
+	syllables(o.syllables), balance(balance), filters(o.filters),
+	prefix(o.prefix), suffix(o.suffix), infix(o.infix),
+	balance_distribution(o.balance_distribution),
+	rng((std::random_device())()) {}
+
+
 std::u32string Stem::generate_unfiltered()
 {
 	int syllable_amount = balance_distribution(rng) + 1;

@@ -25,6 +25,7 @@ namespace genling
 		public:
 			Filter(std::u32string pattern,
 				float probability = 1.0, bool permit = false);
+			Filter(const Filter& o);
 		
 			bool is_permitted(std::u32string string);
 			bool is_rejected(std::u32string string);

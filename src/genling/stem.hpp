@@ -30,6 +30,7 @@ namespace genling
 				std::vector<std::shared_ptr<genling::Filter>> filters,
 				std::u32string prefix = U"", std::u32string suffix = U"",
 				std::u32string infix = U"");
+			Stem(const Stem& o);
 			
 			std::u32string generate();
 			

@@ -9,6 +9,10 @@ Replace::Replace(std::u32string pattern, std::u32string repl, float probability)
 	distribution = std::uniform_real_distribution<float>(0.0,1.0);
 }
 
+Replace::Replace(const Replace& o) :
+	pattern(o.pattern), repl(o.repl), probability(o.probability),
+	distribution(o.distribution), rng((std::random_device())()) {}
+
 std::u32string Replace::apply(std::u32string string)
 {
 	if(distribution(rng) > probability)

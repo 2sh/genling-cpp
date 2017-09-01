@@ -25,6 +25,7 @@ namespace genling
 		public:
 			Replace(std::u32string pattern, std::u32string repl,
 				float probability = 1.0);
+			Replace(const Replace& o);
 			
 			std::u32string apply(std::u32string string);
 			

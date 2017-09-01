@@ -9,6 +9,10 @@ Filter::Filter(std::u32string pattern, float probability, bool permit) :
 	distribution = std::uniform_real_distribution<float>(0.0,1.0);
 }
 
+Filter::Filter(const Filter& o) :
+	pattern(o.pattern), probability(o.probability), permit(o.permit),
+	distribution(o.distribution), rng((std::random_device())()) {}
+
 bool Filter::is_permitted(std::u32string string)
 {
 	if(distribution(rng) > probability)

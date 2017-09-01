@@ -3,7 +3,6 @@
 using namespace genling;
 
 
-
 Segment::Segment(std::vector<Phoneme> phonemes,
 	std::u32string prefix, std::u32string suffix) :
 		prefix(prefix), suffix(suffix),
@@ -11,6 +10,11 @@ Segment::Segment(std::vector<Phoneme> phonemes,
 {
 	set_phonemes(phonemes);
 }
+
+Segment::Segment(const Segment& o) :
+	phonemes(o.phonemes), weight_distribution(o.weight_distribution),
+	prefix(o.prefix), suffix(o.suffix),
+	rng((std::random_device())()) {}
 
 std::u32string Segment::generate()
 {
