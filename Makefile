@@ -10,6 +10,7 @@ objects=$(patsubst %.cpp,%.o,$(sources))
 all: $(progname)
 
 $(progname): $(objects)
+	mkdir -p bin
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) -o bin/$(progname) $(objects) $(LDLIBS)
 
 clean:
