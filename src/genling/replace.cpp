@@ -11,7 +11,7 @@ Replace::Replace(std::u32string pattern, std::u32string repl, float probability)
 
 Replace::Replace(const Replace& o) :
 	pattern(o.pattern), repl(o.repl), probability(o.probability),
-	distribution(o.distribution), rng((std::random_device())()) {}
+	rng((std::random_device())()), distribution(o.distribution) {}
 
 std::u32string Replace::apply(std::u32string string)
 {
@@ -54,8 +54,8 @@ std::u32string Replace::replace(std::u32string string)
 
 RegexReplace::RegexReplace(
 	std::u32string pattern, std::u32string repl, float probability) :
-	Replace(pattern, repl, probability), rgx(boost::make_u32regex(pattern)),
-	u8repl(u32cvt.to_bytes(repl)) {}
+	Replace(pattern, repl, probability), u8repl(u32cvt.to_bytes(repl)),
+	rgx(boost::make_u32regex(pattern)) {}
 
 std::u32string RegexReplace::replace(std::u32string string)
 {

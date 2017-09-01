@@ -12,9 +12,9 @@ Segment::Segment(std::vector<Phoneme> phonemes,
 }
 
 Segment::Segment(const Segment& o) :
-	phonemes(o.phonemes), weight_distribution(o.weight_distribution),
-	prefix(o.prefix), suffix(o.suffix),
-	rng((std::random_device())()) {}
+	phonemes(o.phonemes), prefix(o.prefix), suffix(o.suffix),
+	rng((std::random_device())()),
+	weight_distribution(o.weight_distribution) {}
 
 std::u32string Segment::generate()
 {

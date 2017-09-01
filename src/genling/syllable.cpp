@@ -18,7 +18,7 @@ bool Syllable::is_permitted_position(int i, int length)
 std::u32string Syllable::generate()
 {
 	std::u32string output = prefix;
-	for(int i=0; i<segments.size(); i++)
+	for(unsigned int i=0; i<segments.size(); i++)
 	{
 		if(i>0) output += infix;
 		output += segments[i].generate();

@@ -16,10 +16,10 @@ Stem::Stem(std::vector<Syllable> syllables, std::vector<int> balance,
 }
 
 Stem::Stem(const Stem& o) :
-	syllables(o.syllables), balance(balance), filters(o.filters),
+	syllables(o.syllables), balance(o.balance), filters(o.filters),
 	prefix(o.prefix), suffix(o.suffix), infix(o.infix),
-	balance_distribution(o.balance_distribution),
-	rng((std::random_device())()) {}
+	rng((std::random_device())()),
+	balance_distribution(o.balance_distribution) {}
 
 
 std::u32string Stem::generate_unfiltered()
