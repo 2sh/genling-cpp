@@ -263,7 +263,6 @@ int main(int argc, char* argv[])
 		if(i>0) std::cout << std::endl;
 		
 		output = lang.stem.generate();
-		std::cout << u32cvt.to_bytes(output) << " ";
 		for(auto rule : lang.script_rules)
 		{
 			output = rule->apply(output);
