@@ -9,6 +9,9 @@
 
 namespace genling
 {
+	/**
+		A filter to permit or reject strings containing a string.
+	*/
 	class Filter
 	{
 		private:
@@ -23,18 +26,73 @@ namespace genling
 			virtual bool match(std::u32string string);
 		
 		public:
+			/**
+				Constructor for Filter.
+			
+				@param pattern
+					The pattern to match.
+				@param probability
+					The probability that this filter takes effect.
+				@param permit
+					If this filter should permit instead of reject.
+			*/
 			Filter(std::u32string pattern,
 				float probability = 1.0, bool permit = false);
+			
+			/**
+				Copy constructor for Filter.
+				
+				@param o
+					The Filter to copy.
+			*/
 			Filter(const Filter& o);
-		
+			
+			/**
+				Check if the string is permitted.
+				
+				@param string
+					The string to check.
+				
+				@return If the string is permitted.
+			*/
 			bool is_permitted(std::u32string string);
+			
+			/**
+				Check if the string is rejected.
+				
+				@param string
+					The string to check.
+				
+				@return If the string is rejected.
+			*/
 			bool is_rejected(std::u32string string);
 			
+			
+			/**
+				Get the pattern.
+				
+				@return The pattern.
+			*/
 			std::u32string get_pattern();
+			
+			/**
+				Get the probability.
+				
+				@return The probability.
+			*/
 			float get_probability();
+			
+			/**
+				Does the filter permit or reject.
+				
+				@return If is permit.
+			*/
 			bool is_permit();
 	};
 	
+	/**
+		A filter to permit or reject strings matching a regex pattern.
+	*/
 	class RegexFilter: public Filter
 	{
 		private:
