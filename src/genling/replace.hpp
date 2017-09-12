@@ -23,8 +23,16 @@ namespace genling
 			std::uniform_real_distribution<float> distribution;
 		
 		protected:
+			/**
+				Overloadable replace method.
+				
+				This method can be overloaded to define an alternative
+				implementation of replacing the pattern within an input string.
+				
+				@param string
+					The string to replace.
+			*/
 			virtual std::u32string replace(std::u32string string);
-			
 		public:
 			/**
 				Constructor for Replace.

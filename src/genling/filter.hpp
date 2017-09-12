@@ -23,6 +23,15 @@ namespace genling
 			std::uniform_real_distribution<float> distribution;
 		
 		protected:
+			/**
+				Overloadable match method.
+				
+				This method can be overloaded to define an alternative
+				implementation of matching the pattern within an input string.
+				
+				@param string
+					The string to check.
+			*/
 			virtual bool match(std::u32string string);
 		
 		public:
