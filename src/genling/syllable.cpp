@@ -2,7 +2,6 @@
 
 using namespace genling;
 
-
 Syllable::Syllable(std::vector<Segment> segments,
 	int position, int weight,
 	std::u32string prefix, std::u32string suffix, std::u32string infix) :

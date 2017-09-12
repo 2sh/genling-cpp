@@ -2,7 +2,6 @@
 
 using namespace genling;
 
-
 Segment::Segment(std::vector<Phoneme> phonemes,
 	std::u32string prefix, std::u32string suffix) :
 		prefix(prefix), suffix(suffix),

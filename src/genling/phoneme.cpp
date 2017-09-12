@@ -2,7 +2,6 @@
 
 using namespace genling;
 
-
 Phoneme::Phoneme(std::u32string grapheme, int weight) :
 	grapheme(grapheme), weight(weight) {}
 
