@@ -10,50 +10,50 @@ namespace genling
 	*/
 	class Phoneme
 	{
-		private:
-			std::u32string grapheme;
-			int weight;
+	public:
+		/**
+			Constructor for Phoneme.
+			
+			@param grapheme
+				The graphical representation.
+			@param weight
+				The likelihood of being chosen as a segment of a syllable.
+		*/
+		Phoneme(std::u32string grapheme, int weight = 1);
 		
-		public:
-			/**
-				Constructor for Phoneme.
-				
-				@param grapheme
-					The graphical representation.
-				@param weight
-					The likelihood of being chosen as a segment of a syllable.
-			*/
-			Phoneme(std::u32string grapheme, int weight = 1);
+		
+		/**
+			Get the grapheme.
 			
+			@return The grapheme.
+		*/
+		std::u32string get_grapheme();
+		
+		/**
+			Get the weight.
 			
-			/**
-				Get the grapheme.
-				
-				@return The grapheme.
-			*/
-			std::u32string get_grapheme();
+			@return The weight.
+		*/
+		int get_weight();
+		
+		
+		/**
+			Set the grapheme.
 			
-			/**
-				Get the weight.
-				
-				@return The weight.
-			*/
-			int get_weight();
+			@param grapheme
+		*/
+		void set_grapheme(std::u32string grapheme);
+		
+		/**
+			Set the weight.
 			
-			
-			/**
-				Set the grapheme.
-				
-				@param grapheme
-			*/
-			void set_grapheme(std::u32string grapheme);
-			
-			/**
-				Set the weight.
-				
-				@param weight
-			*/
-			void set_weight(int weight);
+			@param weight
+		*/
+		void set_weight(int weight);
+		
+	private:
+		std::u32string grapheme;
+		int weight;
 	};
 }
 

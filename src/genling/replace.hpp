@@ -14,78 +14,79 @@ namespace genling
 	*/
 	class Replace
 	{
-		private:
-			std::u32string pattern;
-			std::u32string repl;
-			float probability;
+	public:
+		/**
+			Constructor for Replace.
 			
-			std::mt19937 rng;
-			std::uniform_real_distribution<float> distribution;
+			@param pattern
+				The pattern to match.
+			@param repl
+				The replacement string.
+			@param probability
+				The probability that the matched string is replaced.
+		*/
+		Replace(std::u32string pattern, std::u32string repl,
+			float probability = 1.0);
 		
-		protected:
-			/**
-				Overloadable replace method.
-				
-				This method can be overloaded to define an alternative
-				implementation of replacing the pattern within an input string.
-				
-				@param string
-					The string to replace.
-			*/
-			virtual std::u32string replace(std::u32string string);
-		public:
-			/**
-				Constructor for Replace.
-				
-				@param pattern
-					The pattern to match.
-				@param repl
-					The replacement string.
-				@param probability
-					The probability that the matched string is replaced.
-			*/
-			Replace(std::u32string pattern, std::u32string repl,
-				float probability = 1.0);
+		/**
+			Copy constructor for Replace.
 			
-			/**
-				Copy constructor for Replace.
-				
-				@param o
-					The Replace to copy.
-			*/
-			Replace(const Replace& o);
+			@param o
+				The Replace to copy.
+		*/
+		Replace(const Replace& o);
+		
+		/**
+			Replace the matching parts of the string.
 			
-			/**
-				Replace the matching parts of the string.
-				
-				@param string
-					The string to check.
-				
-				@return The replaced string.
-			*/
-			std::u32string apply(std::u32string string);
+			@param string
+				The string to check.
 			
+			@return The replaced string.
+		*/
+		std::u32string apply(std::u32string string);
+		
+		
+		/**
+			Get the pattern.
 			
-			/**
-				Get the pattern.
-				
-				@return The pattern.
-			*/
-			std::u32string get_pattern();
+			@return The pattern.
+		*/
+		std::u32string get_pattern();
+		
+		/**
+			Get the replacement string.
 			
-			/**
-				Get the replacement string.
-				
-				@return The replacement string.
-			*/
-			std::u32string get_repl();
+			@return The replacement string.
+		*/
+		std::u32string get_repl();
+		
+		/**
+			Get the probability.
 			
-			/**
-				Get the probability.
-				
-				@return The probability.
-			*/
-			float get_probability();
+			@return The probability.
+		*/
+		float get_probability();
+	
+	protected:
+		/**
+			Overloadable replace method.
+			
+			This method can be overloaded to define an alternative
+			implementation of replacing the pattern within an input string.
+			
+			@param string
+				The string to replace.
+		*/
+		virtual std::u32string replace(std::u32string string);
+	
+	private:
+		std::u32string pattern;
+		std::u32string repl;
+		float probability;
+		
+		std::mt19937 rng;
+		std::uniform_real_distribution<float> distribution;
 	};
 	
 	/**
@@ -93,17 +94,17 @@ namespace genling
 	*/
 	class RegexReplace: public Replace
 	{
-		private:
-			std::wstring_convert<std::codecvt_utf8<char32_t>, char32_t> u32cvt;
-			std::string u8repl;
-			boost::u32regex rgx;
+	private:
+		std::wstring_convert<std::codecvt_utf8<char32_t>, char32_t> u32cvt;
+		std::string u8repl;
+		boost::u32regex rgx;
 
-		protected:
-			std::u32string replace(std::u32string string);
-		
-		public:
-			RegexReplace(std::u32string pattern, std::u32string repl,
-				float probability = 1.0);
+	protected:
+		std::u32string replace(std::u32string string);
+	
+	public:
+		RegexReplace(std::u32string pattern, std::u32string repl,
+			float probability = 1.0);
 	};
 }
 #endif // GENLING_REPLACE_HPP_INCLUDED
