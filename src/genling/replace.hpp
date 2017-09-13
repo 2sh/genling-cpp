@@ -94,17 +94,17 @@ namespace genling
 	*/
 	class RegexReplace: public Replace
 	{
+	public:
+		RegexReplace(std::u32string pattern, std::u32string repl,
+			float probability = 1.0);
+		
+	protected:
+		std::u32string replace(std::u32string string);
+		
 	private:
 		std::wstring_convert<std::codecvt_utf8<char32_t>, char32_t> u32cvt;
 		std::string u8repl;
 		boost::u32regex rgx;
-
-	protected:
-		std::u32string replace(std::u32string string);
-	
-	public:
-		RegexReplace(std::u32string pattern, std::u32string repl,
-			float probability = 1.0);
 	};
 }
 #endif // GENLING_REPLACE_HPP_INCLUDED
