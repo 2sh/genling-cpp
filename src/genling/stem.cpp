@@ -7,7 +7,7 @@ using namespace genling;
 
 Stem::Stem(const std::vector<Syllable>& syllables,
 	const std::vector<int>& balance,
-	const std::vector<std::shared_ptr<genling::Filter>>& filters,
+	const std::vector<std::shared_ptr<Filter>>& filters,
 	const std::u32string& prefix,
 	const std::u32string& suffix,
 	const std::u32string& infix) :
@@ -95,7 +95,7 @@ const std::vector<int>& Stem::get_balance() const
 	return balance;
 }
 
-const std::vector<std::shared_ptr<genling::Filter>>& Stem::get_filters() const
+const std::vector<std::shared_ptr<Filter>>& Stem::get_filters() const
 {
 	return filters;
 }
@@ -130,7 +130,7 @@ void Stem::set_balance(const std::vector<int>& balance)
 }
 
 void Stem::set_filters(
-	const std::vector<std::shared_ptr<genling::Filter>>& filters)
+	const std::vector<std::shared_ptr<Filter>>& filters)
 {
 	this->filters = filters;
 }

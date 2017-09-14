@@ -34,7 +34,7 @@ namespace genling
 		*/
 		Stem(const std::vector<Syllable>& syllables,
 			const std::vector<int>& balance,
-			const std::vector<std::shared_ptr<genling::Filter>>& filters,
+			const std::vector<std::shared_ptr<Filter>>& filters,
 			const std::u32string& prefix = U"",
 			const std::u32string& suffix = U"",
 			const std::u32string& infix = U"");
@@ -74,7 +74,7 @@ namespace genling
 			
 			@return The filters.
 		*/
-		const std::vector<std::shared_ptr<genling::Filter>>& get_filters() const;
+		const std::vector<std::shared_ptr<Filter>>& get_filters() const;
 		
 		/**
 			Get the prefix.
@@ -118,7 +118,7 @@ namespace genling
 			@param filters
 		*/
 		void set_filters(
-			const std::vector<std::shared_ptr<genling::Filter>>& filters);
+			const std::vector<std::shared_ptr<Filter>>& filters);
 		
 		/**
 			Set the prefix.
@@ -152,7 +152,7 @@ namespace genling
 	private:
 		std::vector<Syllable> syllables;
 		std::vector<int> balance;
-		std::vector<std::shared_ptr<genling::Filter>> filters;
+		std::vector<std::shared_ptr<Filter>> filters;
 		std::u32string prefix;
 		std::u32string suffix;
 		std::u32string infix;
