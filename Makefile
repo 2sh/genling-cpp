@@ -1,7 +1,7 @@
 TARGET=genling
 
 CXX=g++
-CXXFLAGS=-g -Wall -pedantic\
+CXXFLAGS=-g -Wall -Wextra -Werror -pedantic\
 	-std=c++11
 LDLIBS=-lboost_regex -licuuc
 SOURCES=$(wildcard src/genling/*.cpp)\
