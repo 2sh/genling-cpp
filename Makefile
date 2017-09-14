@@ -4,8 +4,8 @@ CXX=g++
 CXXFLAGS=-g -Wall -pedantic\
 	-std=c++11
 LDLIBS=-lboost_regex -licuuc
-SOURCES=src/main.cpp\
-	$(wildcard src/genling/*.cpp)
+SOURCES=$(wildcard src/genling/*.cpp)\
+	src/main.cpp
 OBJECTS=$(SOURCES:src/%.cpp=build/%.o)
 
 RM=rm -rf
