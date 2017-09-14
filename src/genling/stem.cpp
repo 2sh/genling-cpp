@@ -32,15 +32,15 @@ std::u32string Stem::generate_unfiltered()
 	
 	for(int i=0; i<syllable_amount; i++)
 	{
-		std::vector<Syllable> possible_syllables;
+		std::vector<Syllable*> possible_syllables;
 		std::vector<int> weights;
-		Syllable * pt_syllable;
+		int syllable_index;
 		
-		for(Syllable syllable : syllables)
+		for(Syllable& syllable : syllables)
 		{
 			if(!syllable.is_permitted_position(i, syllable_amount))
 				continue;
-			possible_syllables.push_back(syllable);
+			possible_syllables.push_back(&syllable);
 			weights.push_back(syllable.get_weight());
 		}
 		
@@ -49,18 +49,17 @@ std::u32string Stem::generate_unfiltered()
 		{
 			std::discrete_distribution<int> distribution(
 				weights.begin(), weights.end());
-			
-			pt_syllable = &possible_syllables[distribution(rng)];
+			syllable_index = distribution(rng);
 		}
 		else if(possible_syllables.size() == 1)
 		{
-			pt_syllable = &possible_syllables[0];
+			syllable_index = 0;
 		}
 		else
 		{
 			throw std::invalid_argument("No possible syllable for position " + std::to_string(i+1));
 		}
-		output += pt_syllable->generate();
+		output += possible_syllables[syllable_index]->generate();
 	}
 	return output + suffix;
 }
