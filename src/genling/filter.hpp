@@ -25,8 +25,8 @@ namespace genling
 			@param permit
 				If this filter should permit instead of reject.
 		*/
-		Filter(std::u32string pattern,
-			float probability = 1.0, bool permit = false);
+		Filter(const std::u32string& pattern,
+			const float probability = 1.0, const bool permit = false);
 		
 		/**
 			Copy constructor for Filter.
@@ -44,7 +44,7 @@ namespace genling
 			
 			@return If the string is permitted.
 		*/
-		bool is_permitted(std::u32string string);
+		bool is_permitted(const std::u32string& string);
 		
 		/**
 			Check if the string is rejected.
@@ -54,7 +54,7 @@ namespace genling
 			
 			@return If the string is rejected.
 		*/
-		bool is_rejected(std::u32string string);
+		bool is_rejected(const std::u32string& string);
 		
 		
 		/**
@@ -62,21 +62,21 @@ namespace genling
 			
 			@return The pattern.
 		*/
-		std::u32string get_pattern();
+		const std::u32string& get_pattern() const;
 		
 		/**
 			Get the probability.
 			
 			@return The probability.
 		*/
-		float get_probability();
+		float get_probability() const;
 		
 		/**
 			Does the filter permit or reject.
 			
 			@return If is permit.
 		*/
-		bool is_permit();
+		bool is_permit() const;
 	
 	protected:
 		/**
@@ -88,7 +88,7 @@ namespace genling
 			@param string
 				The string to check.
 		*/
-		virtual bool match(std::u32string string);
+		virtual bool match(const std::u32string& string);
 	
 	private:
 		std::u32string pattern;
@@ -105,11 +105,11 @@ namespace genling
 	class RegexFilter: public Filter
 	{
 	public:
-		RegexFilter(std::u32string pattern,
-			float probability = 1.0, bool permit = false);
+		RegexFilter(const std::u32string& pattern,
+			const float probability = 1.0, const bool permit = false);
 	
 	protected:
-		bool match(std::u32string string);
+		bool match(const std::u32string& string);
 	
 	private:
 		boost::u32regex rgx;

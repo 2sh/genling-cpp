@@ -2,29 +2,29 @@
 
 using namespace genling;
 
-Phoneme::Phoneme(std::u32string grapheme, int weight) :
+Phoneme::Phoneme(const std::u32string& grapheme, const int weight) :
 	grapheme(grapheme), weight(weight) {}
 
 // Getters
 
-std::u32string Phoneme::get_grapheme()
+const std::u32string& Phoneme::get_grapheme() const
 {
 	return grapheme;
 }
 
-int Phoneme::get_weight()
+int Phoneme::get_weight() const
 {
 	return weight;
 }
 
 // Setters
 
-void Phoneme::set_grapheme(std::u32string grapheme)
+void Phoneme::set_grapheme(const std::u32string& grapheme)
 {
 	this->grapheme = grapheme;
 }
 
-void Phoneme::set_weight(int weight)
+void Phoneme::set_weight(const int weight)
 {
 	this->weight = weight;
 }

@@ -2,13 +2,15 @@
 
 using namespace genling;
 
-Syllable::Syllable(std::vector<Segment> segments,
-	int position, int weight,
-	std::u32string prefix, std::u32string suffix, std::u32string infix) :
+Syllable::Syllable(const std::vector<Segment>& segments,
+	const int position, const int weight,
+	const std::u32string& prefix,
+	const std::u32string& suffix,
+	const std::u32string& infix) :
 		segments(segments), position(position), weight(weight),
 		prefix(prefix), suffix(suffix), infix(infix) {}
 
-bool Syllable::is_permitted_position(int i, int length)
+bool Syllable::is_permitted_position(const int i, const int length) const
 {
 	return (position == 0 ||
 		(position > 0 ? position : length+position+1) == (i+1));
@@ -17,7 +19,7 @@ bool Syllable::is_permitted_position(int i, int length)
 std::u32string Syllable::generate()
 {
 	std::u32string output = prefix;
-	for(unsigned int i=0; i<segments.size(); i++)
+	for(std::vector<Segment>::size_type i=0; i<segments.size(); i++)
 	{
 		if(i>0) output += infix;
 		output += segments[i].generate();
@@ -27,64 +29,64 @@ std::u32string Syllable::generate()
 
 // Getters
 
-std::vector<Segment> Syllable::get_segments()
+const std::vector<Segment>& Syllable::get_segments() const
 {
 	return segments;
 }
 
-int Syllable::get_position()
+int Syllable::get_position() const
 {
 	return position;
 }
 
-int Syllable::get_weight()
+int Syllable::get_weight() const
 {
 	return weight;
 }
 
-std::u32string Syllable::get_prefix()
+const std::u32string& Syllable::get_prefix() const
 {
 	return prefix;
 }
 
-std::u32string Syllable::get_suffix()
+const std::u32string& Syllable::get_suffix() const
 {
 	return suffix;
 }
 
-std::u32string Syllable::get_infix()
+const std::u32string& Syllable::get_infix() const
 {
 	return infix;
 }
 
 // Setters
 
-void Syllable::set_segments(std::vector<Segment> segments)
+void Syllable::set_segments(const std::vector<Segment>& segments)
 {
 	this->segments = segments;
 }
 
-void Syllable::set_position(int position)
+void Syllable::set_position(const int position)
 {
 	this->position = position;
 }
 
-void Syllable::set_weight(int weight)
+void Syllable::set_weight(const int weight)
 {
 	this->weight = weight;
 }
 
-void Syllable::set_prefix(std::u32string prefix)
+void Syllable::set_prefix(const std::u32string& prefix)
 {
 	this->prefix = prefix;
 }
 
-void Syllable::set_suffix(std::u32string suffix)
+void Syllable::set_suffix(const std::u32string& suffix)
 {
 	this->suffix = suffix;
 }
 
-void Syllable::set_infix(std::u32string infix)
+void Syllable::set_infix(const std::u32string& infix)
 {
 	this->infix = infix;
 }

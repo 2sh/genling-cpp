@@ -25,8 +25,8 @@ namespace genling
 			@param probability
 				The probability that the matched string is replaced.
 		*/
-		Replace(std::u32string pattern, std::u32string repl,
-			float probability = 1.0);
+		Replace(const std::u32string& pattern,
+			const std::u32string& repl, const float probability = 1.0);
 		
 		/**
 			Copy constructor for Replace.
@@ -44,7 +44,7 @@ namespace genling
 			
 			@return The replaced string.
 		*/
-		std::u32string apply(std::u32string string);
+		std::u32string apply(const std::u32string& string);
 		
 		
 		/**
@@ -52,21 +52,21 @@ namespace genling
 			
 			@return The pattern.
 		*/
-		std::u32string get_pattern();
+		const std::u32string& get_pattern() const;
 		
 		/**
 			Get the replacement string.
 			
 			@return The replacement string.
 		*/
-		std::u32string get_repl();
+		const std::u32string& get_repl() const;
 		
 		/**
 			Get the probability.
 			
 			@return The probability.
 		*/
-		float get_probability();
+		float get_probability() const;
 	
 	protected:
 		/**
@@ -95,8 +95,8 @@ namespace genling
 	class RegexReplace: public Replace
 	{
 	public:
-		RegexReplace(std::u32string pattern, std::u32string repl,
-			float probability = 1.0);
+		RegexReplace(const std::u32string& pattern,
+			const std::u32string& repl, const float probability = 1.0);
 		
 	protected:
 		std::u32string replace(std::u32string string);

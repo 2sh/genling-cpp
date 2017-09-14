@@ -32,10 +32,12 @@ namespace genling
 			@param infix
 				The string between the syllables.
 		*/
-		Stem(std::vector<Syllable> syllables, std::vector<int> balance,
-			std::vector<std::shared_ptr<genling::Filter>> filters,
-			std::u32string prefix = U"", std::u32string suffix = U"",
-			std::u32string infix = U"");
+		Stem(const std::vector<Syllable>& syllables,
+			const std::vector<int>& balance,
+			const std::vector<std::shared_ptr<genling::Filter>>& filters,
+			const std::u32string& prefix = U"",
+			const std::u32string& suffix = U"",
+			const std::u32string& infix = U"");
 		
 		/**
 			Copy constructor for Stem.
@@ -58,42 +60,42 @@ namespace genling
 			
 			@return The syllables.
 		*/
-		std::vector<Syllable> get_syllables();
+		const std::vector<Syllable>& get_syllables() const;
 		
 		/**
 			Get the balance.
 			
 			@return The balance.
 		*/
-		std::vector<int> get_balance();
+		const std::vector<int>& get_balance() const;
 		
 		/**
 			Get the filters.
 			
 			@return The filters.
 		*/
-		std::vector<std::shared_ptr<genling::Filter>> get_filters();
+		const std::vector<std::shared_ptr<genling::Filter>>& get_filters() const;
 		
 		/**
 			Get the prefix.
 			
 			@return The prefix.
 		*/
-		std::u32string get_prefix();
+		const std::u32string& get_prefix() const;
 		
 		/**
 			Get the suffix.
 			
 			@return The suffix.
 		*/
-		std::u32string get_suffix();
+		const std::u32string& get_suffix() const;
 		
 		/**
 			Get the infix.
 			
 			@return The infix.
 		*/
-		std::u32string get_infix();
+		const std::u32string& get_infix() const;
 		
 		
 		/**
@@ -101,42 +103,43 @@ namespace genling
 			
 			@param syllables
 		*/
-		void set_syllables(std::vector<Syllable> syllables);
+		void set_syllables(const std::vector<Syllable>& syllables);
 		
 		/**
 			Set the balance.
 			
 			@param balance
 		*/
-		void set_balance(std::vector<int> balance);
+		void set_balance(const std::vector<int>& balance);
 		
 		/**
 			Set the filters.
 			
 			@param filters
 		*/
-		void set_filters(std::vector<std::shared_ptr<genling::Filter>> filters);
+		void set_filters(
+			const std::vector<std::shared_ptr<genling::Filter>>& filters);
 		
 		/**
 			Set the prefix.
 			
 			@param prefix
 		*/
-		void set_prefix(std::u32string prefix);
+		void set_prefix(const std::u32string& prefix);
 		
 		/**
 			Set the suffix.
 			
 			@param suffix
 		*/
-		void set_suffix(std::u32string suffix);
+		void set_suffix(const std::u32string& suffix);
 		
 		/**
 			Set the infix.
 			
 			@param infix
 		*/
-		void set_infix(std::u32string infix);
+		void set_infix(const std::u32string& infix);
 	
 	protected:
 		/**

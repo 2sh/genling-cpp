@@ -30,10 +30,11 @@ namespace genling
 			@param infix
 				The string between the segments.
 		*/
-		Syllable(std::vector<Segment> segments,
-			int position = 0, int weight = 1,
-			std::u32string prefix = U"", std::u32string suffix = U"",
-			std::u32string infix = U"");
+		Syllable(const std::vector<Segment>& segments,
+			const int position = 0, const int weight = 1,
+			const std::u32string& prefix = U"",
+			const std::u32string& suffix = U"",
+			const std::u32string& infix = U"");
 		
 		/**
 			Check if this syllable is permitted in the stem's position.
@@ -45,7 +46,7 @@ namespace genling
 			
 			@return If this syllable is permitted.
 		*/
-		bool is_permitted_position(int i, int length);
+		bool is_permitted_position(const int i, const int length) const;
 		
 		/**
 			Generate a syllable by its segments.
@@ -60,42 +61,42 @@ namespace genling
 			
 			@return The segments.
 		*/
-		std::vector<Segment> get_segments();
+		const std::vector<Segment>& get_segments() const;
 		
 		/**
 			Get the position.
 			
 			@return The position.
 		*/
-		int get_position();
+		int get_position() const;
 		
 		/**
 			Get the weight.
 			
 			@return The weight.
 		*/
-		int get_weight();
+		int get_weight() const;
 		
 		/**
 			Get the prefix.
 			
 			@return The prefix.
 		*/
-		std::u32string get_prefix();
+		const std::u32string& get_prefix() const;
 		
 		/**
 			Get the suffix.
 			
 			@return The suffix.
 		*/
-		std::u32string get_suffix();
+		const std::u32string& get_suffix() const;
 		
 		/**
 			Get the infix.
 			
 			@return The infix.
 		*/
-		std::u32string get_infix();
+		const std::u32string& get_infix() const;
 		
 		
 		/**
@@ -103,42 +104,42 @@ namespace genling
 			
 			@param segments
 		*/
-		void set_segments(std::vector<Segment> segments);
+		void set_segments(const std::vector<Segment>& segments);
 		
 		/**
 			Set the position.
 			
 			@param position
 		*/
-		void set_position(int position);
+		void set_position(const int position);
 		
 		/**
 			Set the weight.
 			
 			@param weight
 		*/
-		void set_weight(int weight);
+		void set_weight(const int weight);
 		
 		/**
 			Set the prefix.
 			
 			@param prefix
 		*/
-		void set_prefix(std::u32string prefix);
+		void set_prefix(const std::u32string& prefix);
 		
 		/**
 			Set the suffix.
 			
 			@param suffix
 		*/
-		void set_suffix(std::u32string suffix);
+		void set_suffix(const std::u32string& suffix);
 		
 		/**
 			Set the infix.
 			
 			@param infix
 		*/
-		void set_infix(std::u32string infix);
+		void set_infix(const std::u32string& infix);
 	
 	private:
 		std::vector<Segment> segments;

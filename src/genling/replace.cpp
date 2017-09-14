@@ -2,7 +2,8 @@
 
 using namespace genling;
 
-Replace::Replace(std::u32string pattern, std::u32string repl, float probability) :
+Replace::Replace(const std::u32string& pattern,
+	const std::u32string& repl, const float probability) :
 	pattern(pattern), repl(repl), probability(probability),
 	rng((std::random_device())())
 {
@@ -13,7 +14,7 @@ Replace::Replace(const Replace& o) :
 	pattern(o.pattern), repl(o.repl), probability(o.probability),
 	rng((std::random_device())()), distribution(o.distribution) {}
 
-std::u32string Replace::apply(std::u32string string)
+std::u32string Replace::apply(const std::u32string& string)
 {
 	if(distribution(rng) > probability)
 		return string;
@@ -22,17 +23,17 @@ std::u32string Replace::apply(std::u32string string)
 
 // Getters
 
-std::u32string Replace::get_pattern()
+const std::u32string& Replace::get_pattern() const
 {
 	return pattern;
 }
 
-std::u32string Replace::get_repl()
+const std::u32string& Replace::get_repl() const
 {
 	return repl;
 }
 
-float Replace::get_probability()
+float Replace::get_probability() const
 {
 	return probability;
 }
@@ -52,8 +53,8 @@ std::u32string Replace::replace(std::u32string string)
 
 // Regex Replace
 
-RegexReplace::RegexReplace(
-	std::u32string pattern, std::u32string repl, float probability) :
+RegexReplace::RegexReplace(const std::u32string& pattern,
+	const std::u32string& repl, const float probability) :
 	Replace(pattern, repl, probability), u8repl(u32cvt.to_bytes(repl)),
 	rgx(boost::make_u32regex(pattern)) {}
 

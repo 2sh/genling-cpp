@@ -2,8 +2,8 @@
 
 using namespace genling;
 
-Segment::Segment(std::vector<Phoneme> phonemes,
-	std::u32string prefix, std::u32string suffix) :
+Segment::Segment(const std::vector<Phoneme>& phonemes,
+	const std::u32string& prefix, const std::u32string& suffix) :
 		prefix(prefix), suffix(suffix),
 		rng((std::random_device())())
 {
@@ -22,29 +22,29 @@ std::u32string Segment::generate()
 
 // Getters
 
-std::vector<Phoneme> Segment::get_phonemes()
+const std::vector<Phoneme>& Segment::get_phonemes() const
 {
 	return phonemes;
 }
 
-std::u32string Segment::get_prefix()
+const std::u32string& Segment::get_prefix() const
 {
 	return prefix;
 }
 
-std::u32string Segment::get_suffix()
+const std::u32string& Segment::get_suffix() const
 {
 	return suffix;
 }
 
 // Setters
 
-void Segment::set_phonemes(std::vector<Phoneme> phonemes)
+void Segment::set_phonemes(const std::vector<Phoneme>& phonemes)
 {
 	this->phonemes = phonemes;
 	
 	std::vector<int> weights;
-	for(Phoneme phoneme : phonemes)
+	for(const Phoneme& phoneme : this->phonemes)
 	{
 		weights.push_back(phoneme.get_weight());
 	}
@@ -52,12 +52,12 @@ void Segment::set_phonemes(std::vector<Phoneme> phonemes)
 		weights.begin(), weights.end());
 }
 
-void Segment::set_prefix(std::u32string prefix)
+void Segment::set_prefix(const std::u32string& prefix)
 {
 	this->prefix = prefix;
 }
 
-void Segment::set_suffix(std::u32string suffix)
+void Segment::set_suffix(const std::u32string& suffix)
 {
 	this->suffix = suffix;
 }

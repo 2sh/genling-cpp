@@ -19,7 +19,7 @@ namespace genling
 			@param weight
 				The likelihood of being chosen as a segment of a syllable.
 		*/
-		Phoneme(std::u32string grapheme, int weight = 1);
+		Phoneme(const std::u32string& grapheme, const int weight = 1);
 		
 		
 		/**
@@ -27,14 +27,14 @@ namespace genling
 			
 			@return The grapheme.
 		*/
-		std::u32string get_grapheme();
+		const std::u32string& get_grapheme() const;
 		
 		/**
 			Get the weight.
 			
 			@return The weight.
 		*/
-		int get_weight();
+		int get_weight() const;
 		
 		
 		/**
@@ -42,7 +42,7 @@ namespace genling
 			
 			@param grapheme
 		*/
-		void set_grapheme(std::u32string grapheme);
+		void set_grapheme(const std::u32string& grapheme);
 		
 		/**
 			Set the weight.

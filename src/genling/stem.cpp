@@ -5,9 +5,12 @@
 
 using namespace genling;
 
-Stem::Stem(std::vector<Syllable> syllables, std::vector<int> balance,
-	std::vector<std::shared_ptr<genling::Filter>> filters,
-	std::u32string prefix, std::u32string suffix,  std::u32string infix) :
+Stem::Stem(const std::vector<Syllable>& syllables,
+	const std::vector<int>& balance,
+	const std::vector<std::shared_ptr<genling::Filter>>& filters,
+	const std::u32string& prefix,
+	const std::u32string& suffix,
+	const std::u32string& infix) :
 		syllables(syllables), filters(filters),
 		prefix(prefix), suffix(suffix), infix(infix),
 		rng((std::random_device())())
@@ -82,66 +85,67 @@ std::u32string Stem::generate()
 
 // Getters
 
-std::vector<Syllable> Stem::get_syllables()
+const std::vector<Syllable>& Stem::get_syllables() const
 {
 	return syllables;
 }
 
-std::vector<int> Stem::get_balance()
+const std::vector<int>& Stem::get_balance() const
 {
 	return balance;
 }
 
-std::vector<std::shared_ptr<genling::Filter>> Stem::get_filters()
+const std::vector<std::shared_ptr<genling::Filter>>& Stem::get_filters() const
 {
 	return filters;
 }
 
-std::u32string Stem::get_prefix()
+const std::u32string& Stem::get_prefix() const
 {
 	return prefix;
 }
 
-std::u32string Stem::get_suffix()
+const std::u32string& Stem::get_suffix() const
 {
 	return suffix;
 }
 
-std::u32string Stem::get_infix()
+const std::u32string& Stem::get_infix() const
 {
 	return infix;
 }
 
 // Setters
 
-void Stem::set_syllables(std::vector<Syllable> syllables)
+void Stem::set_syllables(const std::vector<Syllable>& syllables)
 {
 	this->syllables = syllables;
 }
 
-void Stem::set_balance(std::vector<int> balance)
+void Stem::set_balance(const std::vector<int>& balance)
 {
 	this->balance = balance;
 	balance_distribution = std::discrete_distribution<int>(
-		balance.begin(), balance.end());
+		this->balance.begin(), this->balance.end());
 }
 
-void Stem::set_filters(std::vector<std::shared_ptr<genling::Filter>> filters)
+void Stem::set_filters(
+	const std::vector<std::shared_ptr<genling::Filter>>& filters)
 {
 	this->filters = filters;
 }
 
-void Stem::set_prefix(std::u32string prefix)
+void Stem::set_prefix(const std::u32string& prefix)
 {
 	this->prefix = prefix;
 }
 
-void Stem::set_suffix(std::u32string suffix)
+void Stem::set_suffix(const std::u32string& suffix)
 {
 	this->suffix = suffix;
 }
 
-void Stem::set_infix(std::u32string infix)
+void Stem::set_infix(const std::u32string& infix)
 {
 	this->infix = infix;
 }

@@ -25,8 +25,9 @@ namespace genling
 			@param suffix
 				The following string.
 		*/
-		Segment(std::vector<Phoneme> phonemes,
-			std::u32string prefix = U"", std::u32string suffix = U"");
+		Segment(const std::vector<Phoneme>& phonemes,
+			const std::u32string& prefix = U"",
+			const std::u32string& suffix = U"");
 		
 		/**
 			Copy constructor for Segment.
@@ -49,21 +50,21 @@ namespace genling
 			
 			@return The phonemes.
 		*/
-		std::vector<Phoneme> get_phonemes();
+		const std::vector<Phoneme>& get_phonemes() const;
 		
 		/**
 			Get the prefix.
 			
 			@return The prefix.
 		*/
-		std::u32string get_prefix();
+		const std::u32string& get_prefix() const;
 		
 		/**
 			Get the suffix.
 			
 			@return The suffix.
 		*/
-		std::u32string get_suffix();
+		const std::u32string& get_suffix() const;
 		
 		
 		/**
@@ -71,21 +72,21 @@ namespace genling
 			
 			@param phonemes
 		*/
-		void set_phonemes(std::vector<Phoneme> phonemes);
+		void set_phonemes(const std::vector<Phoneme>& phonemes);
 		
 		/**
 			Set the prefix.
 			
 			@param prefix
 		*/
-		void set_prefix(std::u32string prefix);
+		void set_prefix(const std::u32string& prefix);
 		
 		/**
 			Set the suffix.
 			
 			@param suffix
 		*/
-		void set_suffix(std::u32string suffix);
+		void set_suffix(const std::u32string& suffix);
 	
 	private:
 		std::vector<Phoneme> phonemes;
