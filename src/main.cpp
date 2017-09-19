@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <cstdlib>
+#include <memory>
 
 #include "genling/lib.hpp"
 

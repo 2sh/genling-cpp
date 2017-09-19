@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include <random>
+#include <memory>
 
 #include "syllable.hpp"
 #include "filter.hpp"
