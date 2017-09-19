@@ -26,7 +26,7 @@ namespace genling
 				If this filter should permit instead of reject.
 		*/
 		Filter(const std::u32string& pattern,
-			const float probability = 1.0, const bool permit = false);
+			float probability = 1.0, bool permit = false);
 		
 		/**
 			Copy constructor for Filter.
@@ -106,7 +106,7 @@ namespace genling
 	{
 	public:
 		RegexFilter(const std::u32string& pattern,
-			const float probability = 1.0, const bool permit = false);
+			float probability = 1.0, bool permit = false);
 	
 	protected:
 		bool match(const std::u32string& string);

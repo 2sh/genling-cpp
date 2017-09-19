@@ -3,17 +3,17 @@
 using namespace genling;
 
 Syllable::Syllable(const std::vector<Segment>& segments,
-	const int position, const int weight,
+	int position, unsigned int weight,
 	const std::u32string& prefix,
 	const std::u32string& suffix,
 	const std::u32string& infix) :
 		segments(segments), position(position), weight(weight),
 		prefix(prefix), suffix(suffix), infix(infix) {}
 
-bool Syllable::is_permitted_position(const int i, const int length) const
+bool Syllable::is_permitted_position(unsigned int i, unsigned int length) const
 {
 	return (position == 0 ||
-		(position > 0 ? position : length+position+1) == (i+1));
+		((unsigned int)(position > 0 ? position : length+position+1)) == (i+1));
 }
 
 std::u32string Syllable::generate()
@@ -39,7 +39,7 @@ int Syllable::get_position() const
 	return position;
 }
 
-int Syllable::get_weight() const
+unsigned int Syllable::get_weight() const
 {
 	return weight;
 }
@@ -66,12 +66,12 @@ void Syllable::set_segments(const std::vector<Segment>& segments)
 	this->segments = segments;
 }
 
-void Syllable::set_position(const int position)
+void Syllable::set_position(int position)
 {
 	this->position = position;
 }
 
-void Syllable::set_weight(const int weight)
+void Syllable::set_weight(unsigned int weight)
 {
 	this->weight = weight;
 }

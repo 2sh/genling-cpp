@@ -3,7 +3,7 @@
 using namespace genling;
 
 Filter::Filter(const std::u32string& pattern,
-	const float probability, const bool permit) :
+	float probability, bool permit) :
 	pattern(pattern), probability(probability), permit(permit),
 	rng((std::random_device())())
 {
@@ -55,7 +55,7 @@ bool Filter::match(const std::u32string& string)
 // Regex Filter
 
 RegexFilter::RegexFilter(const std::u32string& pattern,
-	const float probability, const bool permit) :
+	float probability, bool permit) :
 	Filter(pattern, probability, permit)
 {
 	rgx = boost::make_u32regex(pattern);

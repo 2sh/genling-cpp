@@ -33,7 +33,7 @@ namespace genling
 				The string between the syllables.
 		*/
 		Stem(const std::vector<Syllable>& syllables,
-			const std::vector<int>& balance,
+			const std::vector<unsigned int>& balance,
 			const std::vector<std::shared_ptr<Filter>>& filters,
 			const std::u32string& prefix = U"",
 			const std::u32string& suffix = U"",
@@ -67,7 +67,7 @@ namespace genling
 			
 			@return The balance.
 		*/
-		const std::vector<int>& get_balance() const;
+		const std::vector<unsigned int>& get_balance() const;
 		
 		/**
 			Get the filters.
@@ -110,7 +110,7 @@ namespace genling
 			
 			@param balance
 		*/
-		void set_balance(const std::vector<int>& balance);
+		void set_balance(const std::vector<unsigned int>& balance);
 		
 		/**
 			Set the filters.
@@ -143,14 +143,14 @@ namespace genling
 	
 	private:
 		std::vector<Syllable> syllables;
-		std::vector<int> balance;
+		std::vector<unsigned int> balance;
 		std::vector<std::shared_ptr<Filter>> filters;
 		std::u32string prefix;
 		std::u32string suffix;
 		std::u32string infix;
 		
 		std::mt19937 rng;
-		std::discrete_distribution<int> balance_distribution;
+		std::discrete_distribution<unsigned int> balance_distribution;
 		
 		/**
 			Generate an unfiltered stem by its syllables.

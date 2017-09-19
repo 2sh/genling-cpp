@@ -3,7 +3,7 @@
 using namespace genling;
 
 Replace::Replace(const std::u32string& pattern,
-	const std::u32string& repl, const float probability) :
+	const std::u32string& repl, float probability) :
 	pattern(pattern), repl(repl), probability(probability),
 	rng((std::random_device())())
 {
@@ -54,7 +54,7 @@ std::u32string Replace::replace(std::u32string string)
 // Regex Replace
 
 RegexReplace::RegexReplace(const std::u32string& pattern,
-	const std::u32string& repl, const float probability) :
+	const std::u32string& repl, float probability) :
 	Replace(pattern, repl, probability), u8repl(u32cvt.to_bytes(repl)),
 	rgx(boost::make_u32regex(pattern)) {}
 

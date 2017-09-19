@@ -94,7 +94,7 @@ namespace genling
 		std::u32string suffix;
 		
 		std::mt19937 rng;
-		std::discrete_distribution<int> weight_distribution;
+		std::discrete_distribution<unsigned int> weight_distribution;
 	};
 }
 

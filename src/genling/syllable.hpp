@@ -31,7 +31,7 @@ namespace genling
 				The string between the segments.
 		*/
 		Syllable(const std::vector<Segment>& segments,
-			const int position = 0, const int weight = 1,
+			int position = 0, unsigned int weight = 1,
 			const std::u32string& prefix = U"",
 			const std::u32string& suffix = U"",
 			const std::u32string& infix = U"");
@@ -46,7 +46,7 @@ namespace genling
 			
 			@return If this syllable is permitted.
 		*/
-		bool is_permitted_position(const int i, const int length) const;
+		bool is_permitted_position(unsigned int i, unsigned int length) const;
 		
 		/**
 			Generate a syllable by its segments.
@@ -75,7 +75,7 @@ namespace genling
 			
 			@return The weight.
 		*/
-		int get_weight() const;
+		unsigned int get_weight() const;
 		
 		/**
 			Get the prefix.
@@ -111,14 +111,14 @@ namespace genling
 			
 			@param position
 		*/
-		void set_position(const int position);
+		void set_position(int position);
 		
 		/**
 			Set the weight.
 			
 			@param weight
 		*/
-		void set_weight(const int weight);
+		void set_weight(unsigned int weight);
 		
 		/**
 			Set the prefix.
@@ -144,7 +144,7 @@ namespace genling
 	private:
 		std::vector<Segment> segments;
 		int position;
-		int weight;
+		unsigned int weight;
 		std::u32string prefix;
 		std::u32string suffix;
 		std::u32string infix;

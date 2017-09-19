@@ -43,12 +43,12 @@ void Segment::set_phonemes(const std::vector<Phoneme>& phonemes)
 {
 	this->phonemes = phonemes;
 	
-	std::vector<int> weights;
+	std::vector<unsigned int> weights;
 	for(const Phoneme& phoneme : this->phonemes)
 	{
 		weights.push_back(phoneme.get_weight());
 	}
-	weight_distribution = std::discrete_distribution<int>(
+	weight_distribution = std::discrete_distribution<unsigned int>(
 		weights.begin(), weights.end());
 }
 

@@ -26,7 +26,7 @@ namespace genling
 				The probability that the matched string is replaced.
 		*/
 		Replace(const std::u32string& pattern,
-			const std::u32string& repl, const float probability = 1.0);
+			const std::u32string& repl, float probability = 1.0);
 		
 		/**
 			Copy constructor for Replace.
@@ -96,7 +96,7 @@ namespace genling
 	{
 	public:
 		RegexReplace(const std::u32string& pattern,
-			const std::u32string& repl, const float probability = 1.0);
+			const std::u32string& repl, float probability = 1.0);
 		
 	protected:
 		std::u32string replace(std::u32string string);

@@ -222,7 +222,7 @@ GenLang conlang()
 		// Stem starting with an initial
 	};
 	
-	std::vector<int> syllable_balance = {5, 2};
+	std::vector<unsigned int> syllable_balance = {5, 2};
 	
 	std::vector<std::shared_ptr<genling::Replace>> script_rules =
 	{
@@ -249,7 +249,7 @@ GenLang conlang()
 
 int main(int argc, char* argv[])
 {
-	int word_count = 100;
+	unsigned int word_count = 100;
 	if(argc > 1)
 		word_count = strtoul(argv[1], nullptr, 10);
 	
@@ -258,7 +258,7 @@ int main(int argc, char* argv[])
 	GenLang lang = conlang();
 	
 	std::u32string output;
-	for(int i=0; i<word_count; i++)
+	for(unsigned int i=0; i<word_count; i++)
 	{
 		if(i>0) std::cout << std::endl;
 		

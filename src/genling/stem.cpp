@@ -6,7 +6,7 @@
 using namespace genling;
 
 Stem::Stem(const std::vector<Syllable>& syllables,
-	const std::vector<int>& balance,
+	const std::vector<unsigned int>& balance,
 	const std::vector<std::shared_ptr<Filter>>& filters,
 	const std::u32string& prefix,
 	const std::u32string& suffix,
@@ -27,14 +27,14 @@ Stem::Stem(const Stem& o) :
 
 std::u32string Stem::generate_unfiltered()
 {
-	int syllable_amount = balance_distribution(rng) + 1;
+	unsigned int syllable_amount = balance_distribution(rng) + 1;
 	std::u32string output = prefix;
 	
-	for(int i=0; i<syllable_amount; i++)
+	for(unsigned int i=0; i<syllable_amount; i++)
 	{
 		std::vector<Syllable*> possible_syllables;
-		std::vector<int> weights;
-		int syllable_index;
+		std::vector<unsigned int> weights;
+		std::size_t syllable_index;
 		
 		for(Syllable& syllable : syllables)
 		{
@@ -47,7 +47,7 @@ std::u32string Stem::generate_unfiltered()
 		if(i>0) output += infix;
 		if(possible_syllables.size() > 1)
 		{
-			std::discrete_distribution<int> distribution(
+			std::discrete_distribution<unsigned int> distribution(
 				weights.begin(), weights.end());
 			syllable_index = distribution(rng);
 		}
@@ -68,7 +68,7 @@ std::u32string Stem::generate()
 {
 	std::u32string stem;
 	bool is_rejected = false;
-	for(int i=0; i<1000; i++)
+	for(unsigned int i=0; i<1000; i++)
 	{
 		stem = generate_unfiltered();
 		for(auto filter : filters)
@@ -89,7 +89,7 @@ const std::vector<Syllable>& Stem::get_syllables() const
 	return syllables;
 }
 
-const std::vector<int>& Stem::get_balance() const
+const std::vector<unsigned int>& Stem::get_balance() const
 {
 	return balance;
 }
@@ -121,10 +121,10 @@ void Stem::set_syllables(const std::vector<Syllable>& syllables)
 	this->syllables = syllables;
 }
 
-void Stem::set_balance(const std::vector<int>& balance)
+void Stem::set_balance(const std::vector<unsigned int>& balance)
 {
 	this->balance = balance;
-	balance_distribution = std::discrete_distribution<int>(
+	balance_distribution = std::discrete_distribution<unsigned int>(
 		this->balance.begin(), this->balance.end());
 }
 
