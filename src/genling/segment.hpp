@@ -10,7 +10,7 @@
 namespace genling
 {
 	/**
-		The segment within a syllable.
+		A segment within a syllable.
 	*/
 	class Segment
 	{
@@ -19,11 +19,12 @@ namespace genling
 			Constructor for Segment.
 			
 			@param phonemes
-				The phonemes of the segment.
+				The possible phonemes from which to generate a syllable
+				segment.
 			@param prefix
-				The preceding string.
+				The string added to the front of a generated segment.
 			@param suffix
-				The following string.
+				The string added at the end of a generated segment.
 		*/
 		Segment(const std::vector<Phoneme>& phonemes,
 			const std::u32string& prefix = U"",
@@ -39,6 +40,8 @@ namespace genling
 		
 		/**
 			Generate a segment by choosing one of its phonemes.
+			
+			Usually only called by the Syllable object.
 	
 			@return The generated segment.
 		*/

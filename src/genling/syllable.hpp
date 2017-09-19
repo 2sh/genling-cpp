@@ -9,7 +9,7 @@
 namespace genling
 {
 	/**
-		The syllable within a stem.
+		A syllable within a stem.
 	*/
 	class Syllable
 	{
@@ -18,17 +18,17 @@ namespace genling
 			Constructor for Syllable.
 			
 			@param segments
-				The segments of the syllable.
+				The possible segments from which to generate a stem syllable.
 			@param position
 				The position of the syllable with a stem.
 			@param weight
 				The likelihood of being chosen as a syllable in a stem.
 			@param prefix
-				The preceding string.
+				The string added to the front of a generated syllable.
 			@param suffix
-				The following string.
+				The string added at the end of a generated syllable.
 			@param infix
-				The string between the segments.
+				The string inserted between generated segments.
 		*/
 		Syllable(const std::vector<Segment>& segments,
 			int position = 0, unsigned int weight = 1,
@@ -38,6 +38,8 @@ namespace genling
 		
 		/**
 			Check if this syllable is permitted in the stem's position.
+			
+			Usually only called by the Stem object.
 			
 			@param i
 				The position within the stem.
@@ -50,6 +52,8 @@ namespace genling
 		
 		/**
 			Generate a syllable by its segments.
+			
+			Usually only called by the Stem object.
 			
 			@return The generated syllable.
 		*/

@@ -21,17 +21,19 @@ namespace genling
 			Constructor for Stem.
 			
 			@param syllables
-				The syllables of the stem.
+				The possible syllables from which to generate a word stem.
 			@param balance
-				The balance of stem length.
+				The balance of the amount of syllables in the generated stem.
 			@param filters
-				The filters for permitting or rejecting stems.
+				The filters for permitting or rejecting stems. The stem string
+				to be filtered includes the Stem object prefix, suffix and
+				infixes.
 			@param prefix
-				The preceding string.
+				The string added to the front of a generated stem.
 			@param suffix
-				The following string.
+				The string added at the end of a generated stem.
 			@param infix
-				The string between the syllables.
+				The string inserted between generated syllables.
 		*/
 		Stem(const std::vector<Syllable>& syllables,
 			const std::vector<unsigned int>& balance,

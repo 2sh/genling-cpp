@@ -6,7 +6,7 @@
 namespace genling
 {
 	/**
-		The phoneme of a segment.
+		A phoneme of a segment.
 	*/
 	class Phoneme
 	{
