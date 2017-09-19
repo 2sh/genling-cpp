@@ -57,7 +57,8 @@ std::u32string Stem::generate_unfiltered()
 		}
 		else
 		{
-			throw std::invalid_argument("No possible syllable for position " + std::to_string(i+1));
+			throw std::invalid_argument("No possible syllable for position " +
+				std::to_string(i+1));
 		}
 		output += possible_syllables[syllable_index]->generate();
 	}

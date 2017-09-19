@@ -13,7 +13,8 @@ Syllable::Syllable(const std::vector<Segment>& segments,
 bool Syllable::is_permitted_position(unsigned int i, unsigned int length) const
 {
 	return (position == 0 ||
-		((unsigned int)(position > 0 ? position : length+position+1)) == (i+1));
+		((unsigned int)(position > 0 ? position : length+position+1)) ==
+			(i+1));
 }
 
 std::u32string Syllable::generate()
