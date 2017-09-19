@@ -141,14 +141,6 @@ namespace genling
 		*/
 		void set_infix(const std::u32string& infix);
 	
-	protected:
-		/**
-			Generate an unfiltered stem by its syllables.
-			
-			@return The generated unfiltered stem.
-		*/
-		std::u32string generate_unfiltered();
-	
 	private:
 		std::vector<Syllable> syllables;
 		std::vector<int> balance;
@@ -159,6 +151,13 @@ namespace genling
 		
 		std::mt19937 rng;
 		std::discrete_distribution<int> balance_distribution;
+		
+		/**
+			Generate an unfiltered stem by its syllables.
+			
+			@return The generated unfiltered stem.
+		*/
+		std::u32string generate_unfiltered();
 	};
 }
 #endif // GENLING_STEM_HPP_INCLUDED
